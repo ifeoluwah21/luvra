@@ -4,21 +4,9 @@ import { motion, AnimatePresence } from "motion/react";
 import { Button } from "./ui/button";
 import { appStore } from "@/store/appStore";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 export default function Intro() {
   const { slideUp, setSlideUp } = appStore();
-  const [hydrated, setHydrated] = useState(false);
-
-  // Wait for Zustand to rehydrate
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-
-  // Don’t render anything until hydration completes
-  if (!hydrated) return null;
-
-  if (slideUp) return null;
 
   return (
     <AnimatePresence>
@@ -27,7 +15,7 @@ export default function Intro() {
           initial={{ y: 0 }}
           exit={{ y: "-100%" }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-50 flex min-h-screen flex-col items-center justify-center overflow-hidden"
+          className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden"
         >
           {/* Background image */}
           <Image
@@ -43,7 +31,7 @@ export default function Intro() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative z-10 mt-20 font-serif text-6xl font-light tracking-[0.2em] text-white uppercase drop-shadow-lg sm:text-8xl md:text-9xl"
+            className="relative z-10 text-6xl sm:text-8xl md:text-9xl font-serif tracking-[0.2em] uppercase text-white drop-shadow-lg font-light mt-20"
           >
             L U V R A
           </motion.h1>
@@ -56,7 +44,7 @@ export default function Intro() {
             className="relative z-10"
           >
             <Button
-              className="mt-10 h-12 cursor-pointer rounded-none bg-white font-serif text-lg font-medium text-black drop-shadow-lg hover:bg-gray-200 sm:h-14 sm:w-[150px] sm:text-xl md:h-14 md:w-[180px] md:text-2xl"
+              className=" cursor-pointer mt-10 bg-white text-black hover:bg-gray-200  sm:w-[150px] md:w-[180px] h-12 sm:h-14 md:h-14 text-lg sm:text-xl md:text-2xl font-medium rounded-none font-serif drop-shadow-lg"
               onClick={() => setSlideUp(true)}
             >
               Explore
