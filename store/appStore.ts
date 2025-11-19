@@ -1,20 +1,10 @@
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
 
-interface AppStore {
+interface AppState {
   slideUp: boolean;
-  setSlideUp: (value: boolean) => void;
+  setSlideUp: (val: boolean) => void;
 }
-
-export const appStore = create<AppStore>()(
-  persist(
-    (set) => ({
-      slideUp: false,
-      setSlideUp: (value) => set({ slideUp: value }),
-    }),
-    {
-      name: "luvra-storage", // localStorage key
-      storage: createJSONStorage(() => localStorage),
-    },
-  ),
-);
+export const appStore = create<AppState>((set) => ({
+  slideUp: false,
+  setSlideUp: (val: boolean) => set({ slideUp: val }),
+}));
