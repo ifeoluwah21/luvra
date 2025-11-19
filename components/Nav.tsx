@@ -58,7 +58,7 @@ export default function Nav() {
               transition={{ duration: 0.8, ease: "easeInOut" }}
               className="bg-background fixed top-0 left-0 z-50 block h-full w-full p-10 sm:hidden"
             >
-              <div className="itens-center flex justify-between">
+              <div className="items-center flex justify-between">
                 <h2>LUVRA</h2>
                 <X
                   aria-label="Close navigation menu"
