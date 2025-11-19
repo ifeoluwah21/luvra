@@ -38,6 +38,7 @@ export default function Nav() {
       <>
         <div className="flex items-center justify-between sm:hidden">
           <Menu
+            aria-label="Open navigation menu"
             className="cursor-pointer"
             onClick={() => setIsSideBarOpen(true)}
           />
@@ -60,6 +61,7 @@ export default function Nav() {
               <div className="itens-center flex justify-between">
                 <h2>LUVRA</h2>
                 <X
+                  aria-label="Close navigation menu"
                   className="cursor-pointer"
                   onClick={() => setIsSideBarOpen(false)}
                 />
