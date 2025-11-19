@@ -10,7 +10,7 @@ import {
 import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer>
       <ExampleForm />
