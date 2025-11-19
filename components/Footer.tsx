@@ -49,10 +49,10 @@ const Footer: React.FC = () => {
           </ul>
           <ul className="space-y-3">
             <li>
-              <Link href={"#"} className="flex items-center gap-x-3">
+              <a href="mailto:Luvra@gmail.com" className="flex items-center gap-x-3">
                 <Mail />
                 <span> Luvra@gmail.com</span>
-              </Link>
+              </a>
             </li>
             <li>
               <Link href={"#"} className="flex items-center gap-x-3">
