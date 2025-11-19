@@ -4,9 +4,10 @@ import { motion, AnimatePresence } from "motion/react";
 import { Button } from "./ui/button";
 import { introStore } from "@/store/introStore";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function Intro() {
-  const { slideUp, setSlideUp } = appStore();
+  const { slideUp, setSlideUp } = introStore();
   const [hydrated, setHydrated] = useState(false);
 
   // Wait for Zustand to rehydrate
