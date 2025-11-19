@@ -55,9 +55,9 @@ const Footer: React.FC = () => {
               </a>
             </li>
             <li>
-              <Link href={"#"} className="flex items-center gap-x-3">
+              <div className="flex items-center gap-x-3">
                 <MapPin /> <span>Lagos, Nigeria.</span>
-              </Link>
+              </div>
             </li>
           </ul>
         </CardContent>
