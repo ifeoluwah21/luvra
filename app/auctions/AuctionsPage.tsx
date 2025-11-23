@@ -35,7 +35,7 @@ export default function AuctionsPage() {
             <span>Auctions</span>
           </div>
           <h1 className="text-xl font-medium">
-            Here is a overview of products actively on auction, explore!!
+            Here is an overview of products actively on auction, explore!!
           </h1>
           <Carousel className="my-10">
             <CarouselContent>
@@ -214,7 +214,6 @@ const AuctionBidItem: React.FC<{
         </CardHeader>
         <CardContent className="relative aspect-[1.5] lg:px-0">
           <Image
-            // src={"/item.jpg"}
             alt={imgAlt}
             src={imgSrc}
             width={750}
@@ -249,9 +248,7 @@ const AuctionBidItem: React.FC<{
           <p className="text-[#616161]">Current bid</p>
           <p>0.987 ETH</p>
         </div>
-        <Button className="w- w-[150px] rounded-none text-base">
-          Place bid
-        </Button>
+        <Button className="w-[150px] rounded-none text-base">Place bid</Button>
       </div>
     </article>
   );
