@@ -12,7 +12,7 @@ import { Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="mb-8 lg:mt-10">
       <ExampleForm />
       <Card className="sm:grid-[auto] border-0 shadow-none sm:mx-auto sm:grid sm:w-17/20">
         <CardHeader className="sm:block sm:p-0">
