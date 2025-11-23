@@ -35,7 +35,7 @@ const ExampleForm = () => {
   });
 
   return (
-    <Card className="sm: mb-10 w-full rounded-none border-0 shadow-none sm:mx-auto sm:grid sm:w-17/20 sm:grid-cols-2 sm:border sm:border-black">
+    <Card className="w-full rounded-none border-0 shadow-none sm:mx-auto sm:mb-10 sm:grid sm:w-17/20 sm:grid-cols-2 sm:border sm:border-black">
       <CardHeader className="sm:col-[1/3] sm:text-center">
         <CardTitle className="text-2xl">Newsletter</CardTitle>
         <CardContent className="px-0">
