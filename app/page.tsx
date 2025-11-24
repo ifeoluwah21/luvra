@@ -17,13 +17,13 @@ export default function Home() {
   const { slideUp } = introStore();
 
   const images = [
-    { img: "/carousel/img1.png", alt: "Carousel Image 1" },
-    { img: "/carousel/img2.png", alt: "Carousel Image 2" },
-    { img: "/carousel/img3.png", alt: "Carousel Image 3" },
-    { img: "/carousel/img4.png", alt: "Carousel Image 4" },
-    { img: "/carousel/img5.jpg", alt: "Carousel Image 5" },
-    { img: "/carousel/img6.jpg", alt: "Carousel Image 6" },
-    { img: "/carousel/img7.jpg", alt: "Carousel Image 7" },
+    { img: "home/carousel/img1.png", alt: "Carousel Image 1" },
+    { img: "home/carousel/img2.png", alt: "Carousel Image 2" },
+    { img: "home/carousel/img3.png", alt: "Carousel Image 3" },
+    { img: "home/carousel/img4.png", alt: "Carousel Image 4" },
+    { img: "home/carousel/img5.jpg", alt: "Carousel Image 5" },
+    { img: "home/carousel/img6.jpg", alt: "Carousel Image 6" },
+    { img: "home/carousel/img7.jpg", alt: "Carousel Image 7" },
   ];
 
   const plugin = useRef(Autoplay({ delay: 2000 }));
@@ -106,23 +106,23 @@ export default function Home() {
                       <div className="flex items-center gap-6">
                         <div className="*:data-[slot=avatar]:ring-background flex -space-x-4 *:data-[slot=avatar]:ring-2">
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img1.png"} />
+                            <AvatarImage src={"/home/avatars/img1.png"} />
                             <AvatarFallback>Img1</AvatarFallback>
                           </Avatar>
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img2.png"} />
+                            <AvatarImage src={"/home/avatars/img2.png"} />
                             <AvatarFallback>Img2</AvatarFallback>
                           </Avatar>
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img3.png"} />
+                            <AvatarImage src={"/home/avatars/img3.png"} />
                             <AvatarFallback>Img3</AvatarFallback>
                           </Avatar>
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img4.png"} />
+                            <AvatarImage src={"/home/avatars/img4.png"} />
                             <AvatarFallback>Img4</AvatarFallback>
                           </Avatar>
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img5.png"} />
+                            <AvatarImage src={"/home/avatars/img5.png"} />
                             <AvatarFallback>Img5</AvatarFallback>
                           </Avatar>
                         </div>
@@ -161,23 +161,23 @@ export default function Home() {
                       <div className="flex items-center gap-6">
                         <div className="*:data-[slot=avatar]:ring-background flex -space-x-4 *:data-[slot=avatar]:ring-2">
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img1.png"} />
+                            <AvatarImage src={"/home/avatars/img1.png"} />
                             <AvatarFallback>Img1</AvatarFallback>
                           </Avatar>
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img2.png"} />
+                            <AvatarImage src={"/home/avatars/img2.png"} />
                             <AvatarFallback>Img2</AvatarFallback>
                           </Avatar>
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img3.png"} />
+                            <AvatarImage src={"/home/avatars/img3.png"} />
                             <AvatarFallback>Img3</AvatarFallback>
                           </Avatar>
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img4.png"} />
+                            <AvatarImage src={"/home/avatars/img4.png"} />
                             <AvatarFallback>Img4</AvatarFallback>
                           </Avatar>
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img5.png"} />
+                            <AvatarImage src={"/home/avatars/img5.png"} />
                             <AvatarFallback>Img5</AvatarFallback>
                           </Avatar>
                         </div>
@@ -232,23 +232,23 @@ export default function Home() {
                       <div className="flex items-center gap-6">
                         <div className="*:data-[slot=avatar]:ring-background flex -space-x-4 *:data-[slot=avatar]:ring-2">
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img1.png"} />
+                            <AvatarImage src={"/home/avatars/img1.png"} />
                             <AvatarFallback>Img1</AvatarFallback>
                           </Avatar>
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img2.png"} />
+                            <AvatarImage src={"/home/avatars/img2.png"} />
                             <AvatarFallback>Img2</AvatarFallback>
                           </Avatar>
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img3.png"} />
+                            <AvatarImage src={"/home/avatars/img3.png"} />
                             <AvatarFallback>Img3</AvatarFallback>
                           </Avatar>
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img4.png"} />
+                            <AvatarImage src={"/home/avatars/img4.png"} />
                             <AvatarFallback>Img4</AvatarFallback>
                           </Avatar>
                           <Avatar className="h-16 w-16">
-                            <AvatarImage src={"/avatars/img5.png"} />
+                            <AvatarImage src={"/home/avatars/img5.png"} />
                             <AvatarFallback>Img5</AvatarFallback>
                           </Avatar>
                         </div>
@@ -324,23 +324,23 @@ export default function Home() {
                     <div className="mt-4 flex items-center gap-6">
                       <div className="*:data-[slot=avatar]:ring-background flex -space-x-4 *:data-[slot=avatar]:ring-2">
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img1.png"} />
+                          <AvatarImage src={"/home/avatars/img1.png"} />
                           <AvatarFallback>Img1</AvatarFallback>
                         </Avatar>
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img2.png"} />
+                          <AvatarImage src={"/home/avatars/img2.png"} />
                           <AvatarFallback>Img2</AvatarFallback>
                         </Avatar>
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img3.png"} />
+                          <AvatarImage src={"/home/avatars/img3.png"} />
                           <AvatarFallback>Img3</AvatarFallback>
                         </Avatar>
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img4.png"} />
+                          <AvatarImage src={"/home/avatars/img4.png"} />
                           <AvatarFallback>Img4</AvatarFallback>
                         </Avatar>
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img5.png"} />
+                          <AvatarImage src={"/home/avatars/img5.png"} />
                           <AvatarFallback>Img5</AvatarFallback>
                         </Avatar>
                       </div>
@@ -393,23 +393,23 @@ export default function Home() {
                     <div className="mt-4 flex items-center gap-6">
                       <div className="*:data-[slot=avatar]:ring-background flex -space-x-4 *:data-[slot=avatar]:ring-2">
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img1.png"} />
+                          <AvatarImage src={"/home/avatars/img1.png"} />
                           <AvatarFallback>Img1</AvatarFallback>
                         </Avatar>
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img2.png"} />
+                          <AvatarImage src={"/home/avatars/img2.png"} />
                           <AvatarFallback>Img2</AvatarFallback>
                         </Avatar>
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img3.png"} />
+                          <AvatarImage src={"/home/avatars/img3.png"} />
                           <AvatarFallback>Img3</AvatarFallback>
                         </Avatar>
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img4.png"} />
+                          <AvatarImage src={"/home/avatars/img4.png"} />
                           <AvatarFallback>Img4</AvatarFallback>
                         </Avatar>
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img5.png"} />
+                          <AvatarImage src={"/home/avatars/img5.png"} />
                           <AvatarFallback>Img5</AvatarFallback>
                         </Avatar>
                       </div>
@@ -462,23 +462,23 @@ export default function Home() {
                     <div className="mt-4 flex items-center gap-6">
                       <div className="*:data-[slot=avatar]:ring-background flex -space-x-4 *:data-[slot=avatar]:ring-2">
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img1.png"} />
+                          <AvatarImage src={"/home/avatars/img1.png"} />
                           <AvatarFallback>Img1</AvatarFallback>
                         </Avatar>
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img2.png"} />
+                          <AvatarImage src={"/home/avatars/img2.png"} />
                           <AvatarFallback>Img2</AvatarFallback>
                         </Avatar>
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img3.png"} />
+                          <AvatarImage src={"/home/avatars/img3.png"} />
                           <AvatarFallback>Img3</AvatarFallback>
                         </Avatar>
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img4.png"} />
+                          <AvatarImage src={"/home/avatars/img4.png"} />
                           <AvatarFallback>Img4</AvatarFallback>
                         </Avatar>
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={"/avatars/img5.png"} />
+                          <AvatarImage src={"/home/avatars/img5.png"} />
                           <AvatarFallback>Img5</AvatarFallback>
                         </Avatar>
                       </div>
