@@ -35,19 +35,19 @@ const DropsPage: React.FC = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="1">Price</SelectItem>
-              <SelectItem value="2">Price</SelectItem>
-              <SelectItem value="3">Price</SelectItem>
-              <SelectItem value="4">Price</SelectItem>
+              <SelectItem value="price-low-high">Price: Low to High</SelectItem>
+              <SelectItem value="price-high-low">Price: High to Low</SelectItem>
+              <SelectItem value="date-newest">Date: Newest First</SelectItem>
+              <SelectItem value="date-oldest">Date: Oldest First</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
         <div className="flex flex-col gap-y-10">
-          <AuctionItemDetailCard />
-          <AuctionItemDetailCard />
-          <AuctionItemDetailCard />
-          <AuctionItemDetailCard />
-          <AuctionItemDetailCard />
+          <DropItemDetailCard />
+          <DropItemDetailCard />
+          <DropItemDetailCard />
+          <DropItemDetailCard />
+          <DropItemDetailCard />
         </div>
       </section>
     </section>
@@ -56,13 +56,13 @@ const DropsPage: React.FC = () => {
 
 export default DropsPage;
 
-const AuctionItemDetailCard: React.FC = () => {
+const DropItemDetailCard: React.FC = () => {
   return (
     <article className="space-y-4 lg:flex lg:gap-12 lg:space-y-0">
       <div className="relative lg:basis-3/5">
         <Image
           src={"/drop.jpg"}
-          alt=""
+          alt="Eyo : Eko For Show drop preview image"
           width={640}
           height={427}
           className="w-full rounded-sm"
