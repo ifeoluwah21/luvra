@@ -33,7 +33,7 @@ export default function RootLayout({
         <header>
           <NavWrapper />
         </header>
-        <main className="min-h-svh">{children}</main>
+        <main className="min-h-dvh">{children}</main>
         <Footer />
       </body>
     </html>
