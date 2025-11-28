@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "motion/react";
 
 import { introStore } from "@/store/introStore";
+import DropsPage from "./DropsPage";
 
 export default function Drop() {
   const { slideUp } = introStore();
@@ -15,7 +16,7 @@ export default function Drop() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          This is the drop page
+          <DropsPage />
         </motion.div>
       )}
     </AnimatePresence>
