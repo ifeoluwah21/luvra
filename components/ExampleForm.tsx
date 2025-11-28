@@ -1,5 +1,4 @@
 "use client";
-
 import { useForm } from "@tanstack/react-form";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -13,12 +12,13 @@ import {
 import { Field, FieldError, FieldGroup, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import React from "react";
 
 const formSchema = z.object({
   email: z.email({ message: "Invalid email address" }),
 });
 
-const ExampleForm = () => {
+const ExampleForm: React.FC = () => {
   const form = useForm({
     defaultValues: {
       email: "",
