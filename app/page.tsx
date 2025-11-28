@@ -12,6 +12,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { MoveRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   const { slideUp } = introStore();
@@ -530,39 +531,43 @@ export default function Home() {
               <h1 className="text-3xl font-semibold sm:text-4xl">
                 Explore marketplace
               </h1>
-              <motion.div
-                className="cursor-pointer rounded-full border border-gray-500 p-2"
-                whileHover="hover"
-              >
+              <Link href={"/marketplace"}>
                 <motion.div
-                  variants={{
-                    hover: { x: 3 },
-                  }}
+                  className="cursor-pointer rounded-full border border-gray-500 p-2"
+                  whileHover="hover"
                 >
-                  <MoveRight />
+                  <motion.div
+                    variants={{
+                      hover: { x: 3 },
+                    }}
+                  >
+                    <MoveRight />
+                  </motion.div>
                 </motion.div>
-              </motion.div>
+              </Link>
             </div>
             <hr />
             <div className="flex items-center justify-between p-4 sm:p-8 md:p-20">
               <h1 className="text-3xl font-semibold sm:text-4xl">
                 See auctions
               </h1>
-              <motion.div
-                className="cursor-pointer rounded-full border border-gray-500 p-2"
-                whileHover="hover"
-              >
+              <Link href={"/auctions"}>
                 <motion.div
-                  variants={{
-                    hover: { x: 3 },
-                  }}
+                  className="cursor-pointer rounded-full border border-gray-500 p-2"
+                  whileHover="hover"
                 >
-                  <MoveRight />
+                  <motion.div
+                    variants={{
+                      hover: { x: 3 },
+                    }}
+                  >
+                    <MoveRight />
+                  </motion.div>
                 </motion.div>
-              </motion.div>
+              </Link>
             </div>
             <hr className="mb-20" />
-            <div className="relative">
+            <div className="relative mb-20">
               <Image
                 src={"/creators/background.png"}
                 alt="background-image"
@@ -570,28 +575,30 @@ export default function Home() {
                 priority
                 className="object-cover"
               />
-              <div className="relative z-20 flex flex-col p-20 md:flex-row md:gap-40">
-                <div>
-                  <h1 className="mb-8 text-5xl font-bold lg:text-6xl">
+              <div className="absolute inset-0 z-10 bg-black/40" />
+              <div className="relative z-20 flex flex-col items-center gap-8 px-6 py-12 md:flex-row md:items-start md:justify-between md:gap-40 md:px-20">
+                <div className="max-w-xl text-center text-white md:text-left">
+                  <h1 className="mb-4 text-3xl leading-tight font-bold sm:text-4xl md:text-6xl">
                     TOP CREATORS OF
                     <br />
                     THE WEEK
-                  </h1>{" "}
-                  <p className="mt-10 flex max-w-3xl justify-center text-center">
+                  </h1>
+                  <p className="mt-4 text-sm text-white/90 sm:text-base md:text-lg">
                     “Everything always looked better in black and white.
                     Everything always as if it were the first time; there’s
                     always more people in a black and white photograph. It just
                     makes it seem that there were more people at a gig, more
                     people at a football match, than with colour photography.
-                    Everything looks more exciting.”– Jack Lowden
+                    Everything looks more exciting.” – Jack Lowden
                   </p>
                 </div>
+
                 <Image
-                  src={"/creators/topCreator.png"}
+                  src={"/home/topCreators.png"}
                   alt="top"
-                  width={200}
-                  height={300}
-                  className="flex h-auto w-[40%] justify-center object-contain"
+                  width={400}
+                  height={600}
+                  className="w-3/4 max-w-xs object-contain md:w-[40%]"
                 />
               </div>
             </div>
