@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ExampleForm from "./ExampleForm";
 import {
   Card,
@@ -9,11 +9,14 @@ import {
 } from "./ui/card";
 import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
+import CopyrightPhrase from "./CopyrightPhrase";
 
 const Footer = () => {
   return (
     <footer className="mb-8 lg:mt-10">
-      <ExampleForm />
+      <Suspense fallback={<p>Loading...</p>}>
+        <ExampleForm />
+      </Suspense>
       <Card className="sm:grid-[auto] border-0 shadow-none sm:mx-auto sm:grid sm:w-17/20">
         <CardHeader className="sm:block sm:p-0">
           <CardTitle className="text-2xl">LUVRA</CardTitle>
@@ -62,10 +65,9 @@ const Footer = () => {
           </ul>
         </CardContent>
         <CardFooter className="sm:col-[1/3] sm:justify-self-center">
-          <p>
-            LUVRA &copy; <span>{new Date().getFullYear()}</span>. All rights
-            reserved.
-          </p>
+          <Suspense fallback={<p>Loading....</p>}>
+            <CopyrightPhrase />
+          </Suspense>
         </CardFooter>
       </Card>
     </footer>
