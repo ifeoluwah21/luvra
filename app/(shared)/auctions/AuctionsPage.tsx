@@ -1,13 +1,4 @@
-"use client";
-import { motion, AnimatePresence } from "motion/react";
-import { introStore } from "@/store/introStore";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+// "use client";
 import {
   Card,
   CardContent,
@@ -17,178 +8,27 @@ import {
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
+import CachedCarousel from "./CachedCarousel";
+import CachedAuctionsContent from "./CachedAuctionsContent";
 
 const AuctionsPage: React.FC = () => {
-  const { slideUp } = introStore();
-
   return (
-    <AnimatePresence>
-      {slideUp && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.1, delay: 0 }}
-        >
-          <div className="sr-only">
-            <span>Home/</span>
-            <span>Auctions</span>
-          </div>
-          <h1 className="text-xl font-medium">
-            Here is an overview of products actively on auction, explore!!
-          </h1>
-          <Carousel className="my-10">
-            <CarouselContent>
-              <CarouselItem className="basis-auto">
-                <AuctionCarouselItem
-                  src="/auction.jpg"
-                  alt="auction-item"
-                  time={new Date()}
-                />
-              </CarouselItem>
-              <CarouselItem className="basis-auto">
-                <AuctionCarouselItem
-                  src="/item-3.jpg"
-                  alt="auction-item"
-                  time={new Date()}
-                />
-              </CarouselItem>
-              <CarouselItem className="basis-auto">
-                <AuctionCarouselItem
-                  src="/auction.jpg"
-                  alt="auction-item"
-                  time={new Date()}
-                />
-              </CarouselItem>
-              <CarouselItem className="basis-auto">
-                <AuctionCarouselItem
-                  src="/item-3.jpg"
-                  alt="auction-item"
-                  time={new Date()}
-                />
-              </CarouselItem>
-              <CarouselItem className="basis-auto">
-                <AuctionCarouselItem
-                  src="/auction.jpg"
-                  alt="auction-item"
-                  time={new Date()}
-                />
-              </CarouselItem>
-              <CarouselItem className="basis-auto">
-                <AuctionCarouselItem
-                  src="/item-3.jpg"
-                  alt="auction-item"
-                  time={new Date()}
-                />
-              </CarouselItem>
-              <CarouselItem className="basis-auto">
-                <AuctionCarouselItem
-                  src="/item-3.jpg"
-                  alt="auction-item"
-                  time={new Date()}
-                />
-              </CarouselItem>
-              <CarouselItem className="basis-auto">
-                <AuctionCarouselItem
-                  src="/auction.jpg"
-                  alt="auction-item"
-                  time={new Date()}
-                />
-              </CarouselItem>
-              <CarouselItem className="basis-auto">
-                <AuctionCarouselItem
-                  src="/auction.jpg"
-                  alt="auction-item"
-                  time={new Date()}
-                />
-              </CarouselItem>
-              <CarouselItem className="basis-auto">
-                <AuctionCarouselItem
-                  src="/auction.jpg"
-                  alt="auction-item"
-                  time={new Date()}
-                />
-              </CarouselItem>
-              <CarouselItem className="basis-auto">
-                <AuctionCarouselItem
-                  src="/auction.jpg"
-                  alt="auction-item"
-                  time={new Date()}
-                />
-              </CarouselItem>
-            </CarouselContent>
-            <CarouselPrevious
-              size={"icon-lg"}
-              className="left-1 border-none bg-white/15 shadow-[4.68px_4.68px_7.02px_0_rgba(0,0,0,0.15)] backdrop-blur-sm"
-            />
-            <CarouselNext
-              size={"icon-lg"}
-              className="right-1 border-none bg-white/15 shadow-[4.68px_4.68px_7.02px_0_rgba(0,0,0,0.15)] backdrop-blur-sm"
-            />
-          </Carousel>
-          <section className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-8 lg:space-y-0 2xl:grid-cols-3 2xl:gap-16">
-            <h2 className="col-span-full text-xl font-medium lg:font-bold">
-              Top bids from popular creators{" "}
-            </h2>
-            <AuctionBidItem
-              imgAlt="Out of the box"
-              imgSrc="/item.jpg"
-              itemName="Out of the box"
-              itemCreator="Jacob Banks"
-              itemPrice={0.57}
-            />
-            <AuctionBidItem
-              imgAlt="Out of the box"
-              imgSrc="/item-2.jpg"
-              itemName="Out of the box"
-              itemCreator="Jacob Banks"
-              itemPrice={0.57}
-            />
-            <AuctionBidItem
-              imgAlt="Out of the box"
-              imgSrc="/item.jpg"
-              itemName="Out of the box"
-              itemCreator="Jacob Banks"
-              itemPrice={0.57}
-            />
-            <AuctionBidItem
-              imgAlt="Out of the box"
-              imgSrc="/item-2.jpg"
-              itemName="Out of the box"
-              itemCreator="Jacob Banks"
-              itemPrice={0.57}
-            />
-            <AuctionBidItem
-              imgAlt="Out of the box"
-              imgSrc="/item.jpg"
-              itemName="Out of the box"
-              itemCreator="Jacob Banks"
-              itemPrice={0.57}
-            />
-            <AuctionBidItem
-              imgAlt="Out of the box"
-              imgSrc="/item-2.jpg"
-              itemName="Out of the box"
-              itemCreator="Jacob Banks"
-              itemPrice={0.57}
-            />
-            <AuctionBidItem
-              imgAlt="Out of the box"
-              imgSrc="/item.jpg"
-              itemName="Out of the box"
-              itemCreator="Jacob Banks"
-              itemPrice={0.57}
-            />
-            <AuctionBidItem
-              imgAlt="Out of the box"
-              imgSrc="/item-2.jpg"
-              itemName="Out of the box"
-              itemCreator="Jacob Banks"
-              itemPrice={0.57}
-            />
-          </section>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div>
+      <div className="sr-only">
+        <span>Home/</span>
+        <span>Auctions</span>
+      </div>
+      <h1 className="text-xl font-medium">
+        Here is an overview of products actively on auction, explore!!
+      </h1>
+      <CachedCarousel />
+      <section className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-8 lg:space-y-0 2xl:grid-cols-3 2xl:gap-16">
+        <h2 className="col-span-full text-xl font-medium lg:font-bold">
+          Top bids from popular creators{" "}
+        </h2>
+        <CachedAuctionsContent />
+      </section>
+    </div>
   );
 };
 
@@ -269,8 +109,8 @@ export const AuctionCarouselItem: React.FC<{
         <Image
           src={src}
           alt={alt}
-          width={640}
-          height={960}
+          width={100}
+          height={100}
           className="h-[186px] w-[228px] object-cover md:h-[261px] md:w-[320px] 2xl:h-[396px] 2xl:w-[485px]"
         />
       </CardContent>
