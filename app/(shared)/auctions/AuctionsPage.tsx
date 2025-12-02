@@ -1,5 +1,4 @@
 "use client";
-
 import { motion, AnimatePresence } from "motion/react";
 import { introStore } from "@/store/introStore";
 import {
@@ -19,7 +18,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
 
-export default function AuctionsPage() {
+const AuctionsPage: React.FC = () => {
   const { slideUp } = introStore();
 
   return (
@@ -28,7 +27,7 @@ export default function AuctionsPage() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.1, delay: 0 }}
         >
           <div className="sr-only">
             <span>Home/</span>
@@ -191,9 +190,11 @@ export default function AuctionsPage() {
       )}
     </AnimatePresence>
   );
-}
+};
 
-const AuctionBidItem: React.FC<{
+export default AuctionsPage;
+
+export const AuctionBidItem: React.FC<{
   imgSrc: string;
   imgAlt: string;
   itemName: string;
@@ -254,7 +255,7 @@ const AuctionBidItem: React.FC<{
   );
 };
 
-const AuctionCarouselItem: React.FC<{
+export const AuctionCarouselItem: React.FC<{
   src: string;
   alt: string;
   time: Date;

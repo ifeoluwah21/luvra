@@ -1,7 +1,6 @@
-import React from "react";
 import AuctionsPage from "./AuctionsPage";
 
-const page: React.FC = () => {
+const page: React.FC = async () => {
   return <AuctionsPage />;
 };
 
