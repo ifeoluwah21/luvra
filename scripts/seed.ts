@@ -27,13 +27,11 @@ async function seed() {
   // await db.delete(nftsTable);
   // console.log('deleted nfts❌!');
 
-  for (const nft in nfts) {
-    try {
-      await db.insert(nftsTable).values(nfts[nft]);
-    } catch (err) {
-      if (err instanceof Error) {
-        // console.log(err.message);
-      }
+  try {
+    await db.insert(nftsTable).values(nfts).onConflictDoNothing();
+  } catch (err) {
+    if (err instanceof Error) {
+      // console.log(err.message);
     }
   }
   console.log("☘️ seeded db!");
