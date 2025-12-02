@@ -3,8 +3,11 @@ import React from "react";
 import { AuctionBidItem } from "./AuctionsPage";
 import db from "@/db";
 import { nftsTable } from "@/db/schema";
+import { cacheLife, cacheTag } from "next/cache";
 
 const CachedAuctionsContent = async () => {
+  cacheLife("max");
+  cacheTag("nfts");
   const nfts = await db.select().from(nftsTable);
 
   return nfts

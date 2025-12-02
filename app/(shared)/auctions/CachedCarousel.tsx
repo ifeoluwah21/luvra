@@ -11,10 +11,11 @@ import {
 import { AuctionCarouselItem } from "./AuctionsPage";
 import db from "@/db";
 import { nftsTable } from "@/db/schema";
-import { cacheLife } from "next/cache";
+import { cacheLife, cacheTag } from "next/cache";
 
 const CachedCarousel = async () => {
   cacheLife("hours");
+  cacheTag("nfts");
   const nfts = await db.select().from(nftsTable);
   const slicedNfts = nfts.slice(0, 20);
   return (

@@ -111,7 +111,6 @@ export const AuctionCarouselItem: React.FC<{
           alt={alt}
           width={100}
           height={100}
-          unoptimized
           className="h-[186px] w-[228px] object-cover md:h-[261px] md:w-[320px] 2xl:h-[396px] 2xl:w-[485px]"
         />
       </CardContent>
