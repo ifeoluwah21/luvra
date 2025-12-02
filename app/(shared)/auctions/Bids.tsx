@@ -8,7 +8,7 @@ async function Bids() {
   cacheTag("nft");
   cacheLife("hours");
   const nfts = await db.select().from(nftsTable);
-
+  if (nfts.length === 0) return;
   return (
     <AuctionBidItem
       imgAlt={nfts[0].name}
