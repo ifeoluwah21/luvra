@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { introStore } from "@/store/introStore";
+import Image from "next/image";
 
 export default function Marketplace() {
   const { slideUp } = introStore();

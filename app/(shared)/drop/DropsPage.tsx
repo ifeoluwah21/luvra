@@ -29,7 +29,7 @@ const DropsPage: React.FC = () => {
         <Select>
           <SelectTrigger
             size="default"
-            className="ml-auto w-[150px] border-none text-lg font-light text-black shadow-none"
+            className="ml-auto w-max border-none text-lg font-light text-black shadow-none"
           >
             <SelectValue placeholder="Sort by" className="text-black" />
           </SelectTrigger>
