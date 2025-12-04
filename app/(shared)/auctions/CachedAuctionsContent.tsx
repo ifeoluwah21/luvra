@@ -2,13 +2,13 @@
 import React from "react";
 import { AuctionBidItem } from "./AuctionsPage";
 import db from "@/db";
-import { nftsTable } from "@/db/schema";
+import { nftTable } from "@/db/schema";
 import { cacheLife, cacheTag } from "next/cache";
 
 const CachedAuctionsContent = async () => {
   cacheLife("max");
   cacheTag("nfts");
-  const nfts = await db.select().from(nftsTable);
+  const nfts = await db.select().from(nftTable);
 
   return nfts
     .slice(0, 20)
@@ -16,10 +16,10 @@ const CachedAuctionsContent = async () => {
       <AuctionBidItem
         key={nft.id}
         imgAlt={nft.name}
-        imgSrc={nft.image}
+        imgSrc={nft.image.src}
         itemName={nft.name}
         itemCreator="Jacob Banks"
-        itemPrice={nft.price}
+        itemPrice={nft.price.native_currency}
       />
     ));
 };

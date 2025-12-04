@@ -1,0 +1,104 @@
+{
+  "id": "0519d2ef-0c71-4cdc-96b6-648a13a7a804",
+  "prevId": "76b42ca5-00af-40ef-82db-a3df3d38affc",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.nft": {
+      "name": "nft",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "symbol": {
+          "name": "symbol",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "asset_platform_id": {
+          "name": "asset_platform_id",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "native_currency": {
+          "name": "native_currency",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "native_currency_symbol": {
+          "name": "native_currency_symbol",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "total_supply": {
+          "name": "total_supply",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ath_date": {
+          "name": "ath_date",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contract_address": {
+          "name": "contract_address",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "price": {
+          "name": "price",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image": {
+          "name": "image",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "links": {
+          "name": "links",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
