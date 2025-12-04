@@ -10,13 +10,13 @@ import {
 
 import { AuctionCarouselItem } from "./AuctionsPage";
 import db from "@/db";
-import { nftsTable } from "@/db/schema";
+import { nftTable } from "@/db/schema";
 import { cacheLife, cacheTag } from "next/cache";
 
 const CachedCarousel = async () => {
   cacheLife("hours");
   cacheTag("nfts");
-  const nfts = await db.select().from(nftsTable);
+  const nfts = await db.select().from(nftTable);
   const slicedNfts = nfts.slice(0, 20);
   return (
     <Carousel className="my-10">
@@ -24,7 +24,7 @@ const CachedCarousel = async () => {
         {slicedNfts.map((nft) => (
           <CarouselItem key={nft.id} className="basis-auto">
             <AuctionCarouselItem
-              src={nft.image}
+              src={nft.image.src}
               alt={nft.name}
               time={new Date()}
             />
