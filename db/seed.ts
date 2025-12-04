@@ -18,11 +18,11 @@ async function main() {
 
 main()
   .catch((e) => {
-    if (e instanceof Error) console.log(`${e.cause} ❌`);
+    if (e instanceof Error) console.log(`Seeding error: ${e.cause} ❌`);
     process.exit(1);
   })
   .finally(async () => {
     console.log("seeding done!!");
-    console.log("✅ data seeding successful");
+    console.log("✅ Data seeding successful");
     process.exit(0);
   });
