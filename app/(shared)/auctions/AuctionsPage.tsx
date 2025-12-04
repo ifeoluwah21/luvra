@@ -40,7 +40,8 @@ export const AuctionBidItem: React.FC<{
   itemName: string;
   itemCreator: string;
   itemPrice: number;
-}> = ({ imgAlt, imgSrc, itemCreator, itemName, itemPrice }) => {
+  currency: string;
+}> = ({ imgAlt, imgSrc, itemCreator, itemName, itemPrice, currency }) => {
   return (
     <article className="space-y-8">
       <Card className="gap-y-2 py-1.5">
@@ -64,7 +65,9 @@ export const AuctionBidItem: React.FC<{
         </CardContent>
         <CardFooter className="justify-between text-xl font-medium lg:font-bold">
           <h3>{itemName}</h3>
-          <p className="lg:hidden">{itemPrice} ETH</p>
+          <p className="lg:hidden">
+            {itemPrice} {currency}
+          </p>
         </CardFooter>
       </Card>
       <div className="space-y-4 px-6 text-[#616161] lg:font-medium">

@@ -8,20 +8,22 @@ import { cacheLife, cacheTag } from "next/cache";
 const CachedAuctionsContent = async () => {
   cacheLife("max");
   cacheTag("nfts");
-  const nfts = await db.select().from(nftTable);
+  const nfts = await db.query.nftTable.findMany({
+    limit: 20,
+    offset: 2,
+  });
 
-  return nfts
-    .slice(0, 20)
-    .map((nft) => (
-      <AuctionBidItem
-        key={nft.id}
-        imgAlt={nft.name}
-        imgSrc={nft.image.src}
-        itemName={nft.name}
-        itemCreator="Jacob Banks"
-        itemPrice={nft.price.native_currency}
-      />
-    ));
+  return nfts.map((nft) => (
+    <AuctionBidItem
+      key={nft.id}
+      imgAlt={nft.name}
+      imgSrc={nft.image.src}
+      itemName={nft.name}
+      itemCreator="Jacob Banks"
+      itemPrice={nft.price.native_currency}
+      currency={nft.native_currency_symbol}
+    />
+  ));
 };
 
 export default CachedAuctionsContent;

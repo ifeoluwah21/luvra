@@ -16,12 +16,15 @@ import { cacheLife, cacheTag } from "next/cache";
 const CachedCarousel = async () => {
   cacheLife("hours");
   cacheTag("nfts");
-  const nfts = await db.select().from(nftTable);
-  const slicedNfts = nfts.slice(0, 20);
+  const nfts = await db.query.nftTable.findMany({
+    orderBy: (nfts, { asc }) => [asc(nfts.total_supply)],
+    limit: 10,
+  });
+
   return (
     <Carousel className="my-10">
       <CarouselContent>
-        {slicedNfts.map((nft) => (
+        {nfts.map((nft) => (
           <CarouselItem key={nft.id} className="basis-auto">
             <AuctionCarouselItem
               src={nft.image.src}
