@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import { AuctionCarouselItem } from "./AuctionsPage";
+import AuctionCarouselItem from "./AuctionCarouselItem";
 import db from "@/db";
 import { nftTable } from "@/db/schema";
 import { cacheLife, cacheTag } from "next/cache";
@@ -18,7 +18,7 @@ const CachedCarousel = async () => {
   cacheTag("nfts");
   const nfts = await db.query.nftTable.findMany({
     orderBy: (nfts, { asc }) => [asc(nfts.total_supply)],
-    limit: 10,
+    limit: 4,
   });
 
   return (

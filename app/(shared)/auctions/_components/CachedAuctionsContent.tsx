@@ -1,15 +1,14 @@
 "use cache";
 import React from "react";
-import { AuctionBidItem } from "./AuctionsPage";
+import AuctionBidItem from "./AuctionBidItem";
 import db from "@/db";
-import { nftTable } from "@/db/schema";
 import { cacheLife, cacheTag } from "next/cache";
 
 const CachedAuctionsContent = async () => {
   cacheLife("max");
   cacheTag("nfts");
   const nfts = await db.query.nftTable.findMany({
-    limit: 20,
+    limit: 4,
     offset: 2,
   });
 
@@ -19,7 +18,7 @@ const CachedAuctionsContent = async () => {
       imgAlt={nft.name}
       imgSrc={nft.image.src}
       itemName={nft.name}
-      itemCreator="Jacob Banks"
+      itemCreator={nft.native_currency}
       itemPrice={nft.price.native_currency}
       currency={nft.native_currency_symbol}
     />
