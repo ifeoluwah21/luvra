@@ -10,7 +10,6 @@ import {
 
 import AuctionCarouselItem from "./AuctionCarouselItem";
 import db from "@/db";
-import { nftTable } from "@/db/schema";
 import { cacheLife, cacheTag } from "next/cache";
 
 const CachedCarousel = async () => {

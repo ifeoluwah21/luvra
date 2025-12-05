@@ -28,7 +28,8 @@ const AuctionBidItem: React.FC<AuctionBidItemProps> = ({
   itemPrice,
   currency,
 }) => {
-  const [fav, setFav] = useState<boolean>(false);
+  const [isFav, setIsFav] = useState<boolean>(false);
+
   return (
     <article className="space-y-8">
       <Card className="gap-y-2 py-1.5">
@@ -37,9 +38,10 @@ const AuctionBidItem: React.FC<AuctionBidItemProps> = ({
             variant={"outline"}
             size={"icon"}
             className="ml-auto rounded-full"
+            onClick={() => setIsFav((prev) => !prev)}
           >
             <Heart
-              className={`h-5 w-5 ${fav ? "fill-red-400" : "fill-gray-100"}`}
+              className={`h-5 w-5 ${isFav ? "fill-red-400" : "fill-gray-100"}`}
             />
           </Button>
         </CardHeader>
