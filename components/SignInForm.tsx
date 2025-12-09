@@ -4,7 +4,7 @@ import FormGroup from "./formGroup";
 import { Button } from "./ui/button";
 import { Wallet } from "lucide-react";
 import Link from "next/link";
-import { onSubmit } from "@/actions/auth";
+import { onSubmit, signinWithGoogle } from "@/actions/auth";
 
 const SignInForm: React.FC = () => {
   return (
@@ -33,7 +33,7 @@ const SignInForm: React.FC = () => {
         <hr className="border-custom-border flex-1 border-t" />
       </div>
       <Button
-        type="button"
+        formAction={signinWithGoogle}
         variant={"outline"}
         className="hover:bg-custom-border/20 text-custom-text hover:text-custom-text h-14 w-full cursor-pointer rounded-2xl bg-transparent text-base leading-normal font-bold tracking-[-0.015rem] transition-colors"
       >
@@ -51,7 +51,6 @@ const SignInForm: React.FC = () => {
         </div>
       </Button>
       <Button
-        type="button"
         variant={"outline"}
         className="hover:bg-custom-border/20 text-custom-text hover:text-custom-text h-14 w-full cursor-pointer rounded-2xl bg-transparent text-base leading-normal font-bold tracking-[-0.015rem] transition-colors"
       >

@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import FormGroup from "./formGroup";
 import { Wallet } from "lucide-react";
+import { signinWithGoogle } from "@/actions/auth";
 
 const SignUpForm: React.FC = () => {
   return (
@@ -37,6 +38,7 @@ const SignUpForm: React.FC = () => {
         <hr className="border-custom-border flex-1 border-t" />
       </div>
       <Button
+        formAction={signinWithGoogle}
         variant={"outline"}
         className="hover:bg-custom-border/20 text-custom-text hover:text-custom-text h-14 w-full cursor-pointer rounded-2xl bg-transparent text-base leading-normal font-bold tracking-[-0.015rem] transition-colors"
       >
