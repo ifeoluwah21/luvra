@@ -17,7 +17,7 @@ const CachedCarousel = async () => {
   cacheTag("nfts");
   const nfts = await db.query.nftTable.findMany({
     orderBy: (nfts, { asc }) => [asc(nfts.total_supply)],
-    limit: 4,
+    limit: 10,
   });
 
   return (
@@ -35,11 +35,11 @@ const CachedCarousel = async () => {
       </CarouselContent>
       <CarouselPrevious
         size={"icon-lg"}
-        className="left-1 border-none bg-white/15 shadow-[4.68px_4.68px_7.02px_0_rgba(0,0,0,0.15)] backdrop-blur-sm"
+        className="left-1 scale-120 border-none bg-white/15 shadow-[4.68px_4.68px_7.02px_0_rgba(0,0,0,0.15)] backdrop-blur-sm md:scale-150 lg:scale-200"
       />
       <CarouselNext
         size={"icon-lg"}
-        className="right-1 border-none bg-white/15 shadow-[4.68px_4.68px_7.02px_0_rgba(0,0,0,0.15)] backdrop-blur-sm"
+        className="right-1 scale-120 border-none bg-white/15 shadow-[4.68px_4.68px_7.02px_0_rgba(0,0,0,0.15)] backdrop-blur-sm md:scale-150 lg:scale-200"
       />
     </Carousel>
   );
