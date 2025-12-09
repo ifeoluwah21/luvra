@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
-import FormGroup from "./formGroup";
 import { Wallet } from "lucide-react";
 import { signinWithGoogle } from "@/actions/auth";
+import FormGroup from "./FormGroup";
 
 const SignUpForm: React.FC = () => {
   return (

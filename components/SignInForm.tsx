@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import FormGroup from "./formGroup";
+import FormGroup from "./FormGroup";
 import { Button } from "./ui/button";
 import { Wallet } from "lucide-react";
 import Link from "next/link";

@@ -21,7 +21,7 @@ export default async function Home() {
   if (!session?.user) return redirect("/sign-in");
 
   return (
-    <div className="flex min-h-svh w-full flex-col items-center justify-around">
+    <div className="flex min-h-svh w-full flex-col items-center justify-center gap-10">
       <form className="mx-auto w-full max-w-md">
         <Button
           formAction={signout}
@@ -30,14 +30,14 @@ export default async function Home() {
         >
           <div className="flex items-center gap-4">
             <Wallet className="size-6" />
-            <span>Continue with Wallet</span>
+            <span>Logout</span>
           </div>
         </Button>
       </form>
       <h1>{session.user.name}</h1>
       <p>{session.user.email}</p>
       <Image
-        src={session.user.image!}
+        src={session.user.image || ""}
         alt={session.user.name!}
         width={100}
         height={100}

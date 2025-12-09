@@ -1,13 +1,13 @@
 import React from "react";
 
-interface FormGroup {
+interface FormGroupProps {
   name: string;
   type: React.HTMLInputTypeAttribute;
   placeholder: string;
   autocomplete?: React.HTMLInputAutoCompleteAttribute;
 }
 
-const FormGroup: React.FC<FormGroup> = ({
+const FormGroup: React.FC<FormGroupProps> = ({
   name,
   type,
   placeholder,
