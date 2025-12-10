@@ -1,27 +1,16 @@
-import { signout } from "@/actions/auth";
-import { Button } from "@/components/ui/button";
-import { auth } from "@/lib/auth";
-import { Wallet } from "lucide-react";
-import Image from "next/image";
-import { redirect } from "next/navigation";
 import React from "react";
+import { Button } from "./ui/button";
+import { signout } from "@/actions/auth";
+import { Wallet } from "lucide-react";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import Image from "next/image";
 
-export default async function Home() {
-  // const images = [
-  //   { img: "/home/carousel/img1.png", alt: "Carousel Image 1" },
-  //   { img: "/home/carousel/img2.png", alt: "Carousel Image 2" },
-  //   { img: "/home/carousel/img3.png", alt: "Carousel Image 3" },
-  //   { img: "/home/carousel/img4.png", alt: "Carousel Image 4" },
-  //   { img: "/home/carousel/img5.jpg", alt: "Carousel Image 5" },
-  //   { img: "/home/carousel/img6.jpg", alt: "Carousel Image 6" },
-  //   { img: "/home/carousel/img7.jpg", alt: "Carousel Image 7" },
-  // ];
+const LogOut = async () => {
   const session = await auth();
-
   if (!session?.user) return redirect("/sign-in");
-
   return (
-    <div className="flex min-h-svh w-full flex-col items-center justify-center gap-10">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-10">
       <form className="mx-auto w-full max-w-md">
         <Button
           formAction={signout}
@@ -44,4 +33,6 @@ export default async function Home() {
       />
     </div>
   );
-}
+};
+
+export default LogOut;
