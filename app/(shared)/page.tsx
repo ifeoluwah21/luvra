@@ -62,20 +62,35 @@ export default async function Home() {
           Trending Collections
         </h2>
         <div className="flex gap-6 overflow-x-auto py-4 [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {nftProducts.map(({ name, img, creator }) => (
-            <NftCard key={name} name={name} img={img} creator={creator} />
+          {nftProducts.map(({ name, img, creator }, i) => (
+            <NftCard
+              key={`${name}-1-${i}`}
+              name={name}
+              img={img}
+              creator={creator}
+            />
           ))}
-          {nftProducts.map(({ name, img, creator }) => (
-            <NftCard key={name} name={name} img={img} creator={creator} />
+          {nftProducts.map(({ name, img, creator }, i) => (
+            <NftCard
+              key={`${name}-2-${i}`}
+              name={name}
+              img={img}
+              creator={creator}
+            />
           ))}
-          {nftProducts.map(({ name, img, creator }) => (
-            <NftCard key={name} name={name} img={img} creator={creator} />
+          {nftProducts.map(({ name, img, creator }, i) => (
+            <NftCard
+              key={`${name}-3-${i}`}
+              name={name}
+              img={img}
+              creator={creator}
+            />
           ))}
         </div>
       </section>
       <section>
         <h2 className="pt-5 pb-3 text-[22px] leading-tight font-bold tracking-[-0.015rem] text-white">
-          Browser by Category
+          Browse by Category
         </h2>
         <div className="flex flex-wrap items-center gap-3 py-4">
           <Button className="bg-pry hover:bg-pry/90 shadow-accent flex h-10 min-w-[84px] items-center justify-center rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors">

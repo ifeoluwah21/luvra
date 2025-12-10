@@ -8,7 +8,6 @@ const LuvraIcon: React.FC = () => {
           clipRule="evenodd"
           d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z"
           className="fill-pry"
-          fill="currentColor"
           fillRule="evenodd"
         ></path>
       </svg>

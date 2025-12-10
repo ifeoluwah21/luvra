@@ -12,8 +12,13 @@ const Header = () => {
           Luvra
         </h2>
       </div>
-      <nav></nav>
-      <Button type="button" variant={"ghost"} className="lg:hidden">
+      {/* <nav></nav> */}
+      <Button
+        type="button"
+        variant={"ghost"}
+        className="lg:hidden"
+        aria-label="Open navigation menu"
+      >
         <Menu className="size-6" />
       </Button>
     </header>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 const Hero: React.FC = () => {
   return (
@@ -19,10 +20,10 @@ const Hero: React.FC = () => {
           </div>
           <div className="flex items-center gap-4">
             <Button className="bg-pry shadow-accent hover:bg-pry/90 h-10 max-w-[480px] min-w-[84px] rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] transition-colors @[480px]:h-12 @[480px]:px-5 @[480px]:text-base">
-              <span>Explore</span>
+              <Link href={"#"}>Explore</Link>
             </Button>
             <Button className="bg-dark-surface/80 shadow-accent hover:bg-dark-surface/20 border-border-light/20 h-10 max-w-[480px] min-w-[84px] rounded-full border px-4 text-sm leading-normal font-bold tracking-[0.015rem] transition-colors @[480px]:h-12 @[480px]:px-5 @[480px]:text-base">
-              <span>Create</span>
+              <Link href={"#"}>Create</Link>
             </Button>
           </div>
         </div>
