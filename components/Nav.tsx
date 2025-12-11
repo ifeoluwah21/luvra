@@ -16,10 +16,10 @@ const Nav: React.FC<{ userAvatar?: string; userName?: string }> = ({
       <nav className="hidden w-full items-center justify-center gap-4 lg:flex">
         <ul className="bg-dark-surface-200 border-custom-border/20 flex items-center gap-8 rounded-full border px-8 py-2 text-sm backdrop-blur-sm">
           <li className="leading-normal font-semibold transition-colors hover:text-white">
-            <Link href={"#"}>Discover</Link>
+            <Link href={"/"}>Discover</Link>
           </li>
           <li className="leading-normal font-semibold transition-colors hover:text-white">
-            <Link href={"#"}>Auctions</Link>
+            <Link href={"/auctions"}>Auctions</Link>
           </li>
           <li className="leading-normal font-semibold transition-colors hover:text-white">
             <Link href={"#"}>Drops</Link>
@@ -60,12 +60,12 @@ const Nav: React.FC<{ userAvatar?: string; userName?: string }> = ({
         </div>
         <ul className="flex w-full flex-col items-center gap-6">
           <li className="text-xl leading-normal font-semibold transition-colors hover:text-white">
-            <Link href={"#"} className="px-4 py-2">
+            <Link href={"/"} className="px-4 py-2">
               Discover
             </Link>
           </li>
           <li className="text-xl leading-normal font-semibold transition-colors hover:text-white">
-            <Link href={"#"} className="px-4 py-2">
+            <Link href={"/auctions"} className="px-4 py-2">
               Auctions
             </Link>
           </li>
