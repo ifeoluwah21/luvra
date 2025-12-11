@@ -6,7 +6,7 @@ import DiscordIcon from "./DiscordIcon";
 
 const Footer = () => {
   return (
-    <footer className="border-custom-border/20 mt-10 w-full border-t px-4 py-8">
+    <footer className="border-custom-border/20 mt-10 w-full border-t px-4 py-8 sm:px-10 md:px-20 lg:px-30">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-4">
