@@ -1,26 +1,22 @@
 import React from "react";
 import LuvraIcon from "./LuvraIcon";
-import { Button } from "./ui/button";
-import { Menu } from "lucide-react";
+import Nav from "./Nav";
+import { auth } from "@/lib/auth";
 
-const Header = () => {
+const Header: React.FC = async () => {
+  const session = await auth();
   return (
-    <header className="flex w-full items-center justify-between px-4 py-4 whitespace-nowrap sm:px-6 md:px-10">
+    <header className="border-b-custom-border/20 bg-background-dark sticky top-0 z-10 flex w-full items-center justify-between border-b px-4 py-4 whitespace-nowrap backdrop-blur-sm sm:px-10 md:px-20 lg:gap-6 lg:px-30">
       <div className="flex items-center gap-4">
         <LuvraIcon />
         <h2 className="text-lg leading-tight font-bold tracking-[-0.015em] text-white">
           Luvra
         </h2>
       </div>
-      {/* <nav></nav> */}
-      <Button
-        type="button"
-        variant={"ghost"}
-        className="lg:hidden"
-        aria-label="Open navigation menu"
-      >
-        <Menu className="size-6" />
-      </Button>
+      <Nav
+        userAvatar={session?.user?.image || ""}
+        userName={session?.user?.name || ""}
+      />
     </header>
   );
 };
