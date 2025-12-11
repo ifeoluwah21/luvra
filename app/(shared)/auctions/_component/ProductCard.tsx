@@ -21,7 +21,7 @@ const ProductCard: FC<ProductCardProps> = ({
       <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
         <div className="flex flex-col">
           <h3 className="text-base leading-normal font-bold text-white">
-            Abstract Minds #12
+            {productName} #12
           </h3>
           <p className="text-custom-text text-sm leading-normal font-normal">
             by {productCreator}

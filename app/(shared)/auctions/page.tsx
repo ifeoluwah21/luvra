@@ -3,7 +3,7 @@ import { nftProducts } from "@/lib/product";
 import React from "react";
 import ProductCard from "./_component/ProductCard";
 
-const page = () => {
+const AuctionsPage = () => {
   return (
     <div className="flex flex-col gap-8 px-4 md:flex-row">
       <aside className="w-full md:w-64 lg:w-72">
@@ -21,7 +21,6 @@ const page = () => {
             />
           </div>
           <div className="flex flex-col gap-4">
-            {" "}
             <h2 className="text-lg font-bold text-white">Filter</h2>
             <div className="flex w-full flex-col gap-2">
               <label
@@ -51,9 +50,9 @@ const page = () => {
       </aside>
       <section className="@container flex-1">
         <div className="grid grid-cols-1 gap-8 @[480px]:grid-cols-2 @[768px]:grid-cols-3">
-          {nftProducts.map(({ img, name, creator }) => (
+          {nftProducts.map(({ img, name, creator }, i) => (
             <ProductCard
-              key={img}
+              key={`${name}-${i}`}
               productImg={img}
               productName={name}
               productCreator={creator}
@@ -65,4 +64,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default AuctionsPage;

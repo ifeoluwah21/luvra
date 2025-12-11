@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren } from "react";
 
-const layout: FC<PropsWithChildren> = ({ children }) => {
+const AuctionsLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <main className="mx-auto mt-10 flex w-full max-w-7xl flex-col gap-10 px-4 md:gap-16">
       <div className="px-4">
@@ -16,4 +16,4 @@ const layout: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-export default layout;
+export default AuctionsLayout;
