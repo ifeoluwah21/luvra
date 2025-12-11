@@ -55,7 +55,7 @@ export default async function Home() {
   if (!session?.user) return redirect("/sign-in");
 
   return (
-    <main className="flex w-full flex-col gap-10 px-4 sm:px-16 md:gap-16 md:px-30 lg:px-30">
+    <main className="flex w-full flex-col gap-10 px-4 sm:px-10 md:gap-16 md:px-20 lg:px-30">
       <Hero />
       <section>
         <h2 className="pt-5 pb-3 text-[22px] leading-normal font-bold tracking-[-0.015rem] text-white">

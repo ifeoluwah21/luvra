@@ -135,3 +135,7 @@
     cursor: pointer;
   }
 }
+
+.modal-open {
+  overflow-y: hidden;
+}

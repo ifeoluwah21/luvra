@@ -39,9 +39,13 @@ const Nav: React.FC<{ userAvatar?: string; userName?: string }> = ({
         <div className="flex w-full items-center justify-between">
           <Button
             type="button"
-            onClick={() => setIsNavOpen(false)}
+            onClick={() => {
+              setIsNavOpen(false);
+              document.body.classList.remove("modal-open");
+            }}
             variant={"ghost"}
             className="hover:bg-dark-surface-200/30 hover:text-custom-border transition-colors"
+            aria-label="Close navigation menu"
           >
             <X className="size-8" />
           </Button>
@@ -105,7 +109,10 @@ const Nav: React.FC<{ userAvatar?: string; userName?: string }> = ({
         variant={"ghost"}
         className="hover:bg-dark-surface-200/30 hover:text-custom-border transition-colors lg:hidden"
         aria-label="Open navigation menu"
-        onClick={() => setIsNavOpen(true)}
+        onClick={() => {
+          setIsNavOpen(true);
+          document.body.classList.add("modal-open");
+        }}
       >
         <Menu className="size-6" />
       </Button>
