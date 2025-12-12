@@ -22,7 +22,7 @@ const Nav: React.FC<{ userAvatar?: string; userName?: string }> = ({
             <Link href={"/auctions"}>Auctions</Link>
           </li>
           <li className="leading-normal font-semibold transition-colors hover:text-white">
-            <Link href={"#"}>Drops</Link>
+            <Link href={"/drops"}>Drops</Link>
           </li>
           <li className="leading-normal font-semibold transition-colors hover:text-white">
             <Link href={"#"}>Profile</Link>
@@ -70,7 +70,7 @@ const Nav: React.FC<{ userAvatar?: string; userName?: string }> = ({
             </Link>
           </li>
           <li className="text-xl leading-normal font-semibold transition-colors hover:text-white">
-            <Link href={"#"} className="px-4 py-2">
+            <Link href={"/drops"} className="px-4 py-2">
               Drops
             </Link>
           </li>
