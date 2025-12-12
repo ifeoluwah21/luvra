@@ -49,7 +49,7 @@ const DropsPage = () => {
   return (
     <section>
       <div className="mt-4 grid grid-cols-1 gap-8 lg:grid-cols-5 lg:gap-12">
-        <div className="relative flex overflow-hidden rounded-2xl lg:col-span-2">
+        <div className="shadow-card relative flex overflow-hidden rounded-2xl lg:col-span-2">
           <Image
             src={img}
             alt="NFT"

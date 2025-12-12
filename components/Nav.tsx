@@ -28,7 +28,7 @@ const Nav: React.FC<{ userAvatar?: string; userName?: string }> = ({
             <Link href={"#"}>Profile</Link>
           </li>
           <li className="leading-normal font-semibold transition-colors hover:text-white">
-            <Link href={"#"}>Create</Link>
+            <Link href={"/create"}>Create</Link>
           </li>
         </ul>
       </nav>
@@ -80,7 +80,7 @@ const Nav: React.FC<{ userAvatar?: string; userName?: string }> = ({
             </Link>
           </li>
           <li className="text-xl leading-normal font-semibold transition-colors hover:text-white">
-            <Link href={"#"} className="px-4 py-2">
+            <Link href={"/create"} className="px-4 py-2">
               Create
             </Link>
           </li>
