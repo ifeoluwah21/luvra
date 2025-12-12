@@ -19,6 +19,7 @@ const CreatePage: FC = () => {
               type="file"
               name="nft_file"
               id="nft_file"
+              accept="image/*, video/*"
             />
           </div>
         </div>
@@ -68,6 +69,7 @@ const CreatePage: FC = () => {
                 name="price"
                 id="price"
                 placeholder="0.00"
+                min={0}
                 className="bg-background-dark focus:ring-pry h-full w-full resize-none overflow-hidden rounded-l-[0.75rem] border border-[#a0a0a0]/30 p-[15px] text-base leading-normal font-normal text-white transition-all placeholder:text-white/60 focus:ring-2 focus:outline-0"
               />
               <span className="flex h-full items-center justify-center rounded-r-[0.75rem] border border-white/30 bg-white/5 px-4 font-medium">
