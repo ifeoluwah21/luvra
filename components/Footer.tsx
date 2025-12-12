@@ -23,13 +23,13 @@ const Footer = () => {
           <h3 className="font-bold text-white">Marketplace</h3>
           <ul className="flex flex-col gap-3">
             <li className="text-custom-text hover:text-pry w-max text-sm transition-colors">
-              <Link href={"#"}>Explore</Link>
+              <Link href={"/"}>Discover</Link>
             </li>
             <li className="text-custom-text hover:text-pry w-max text-sm transition-colors">
-              <Link href={"#"}>Stats</Link>
+              <Link href={"/auctions"}>Auctions</Link>
             </li>
             <li className="text-custom-text hover:text-pry w-max text-sm transition-colors">
-              <Link href={"#"}>Create</Link>
+              <Link href={"/create"}>Create</Link>
             </li>
           </ul>
         </div>
