@@ -10,7 +10,17 @@ const CreatePage: FC = () => {
           <h3 className="text-lg leading-normal font-bold tracking-[-0.033rem] text-white">
             1. Upload File
           </h3>
-          <div></div>
+          <div className="flex flex-col">
+            <label className="sr-only" htmlFor="nft_file">
+              NFT File
+            </label>
+            <input
+              className="min-h-[295px] rounded-[0.75rem] border-2 border-dashed border-white/30 px-6 py-14"
+              type="file"
+              name="nft_file"
+              id="nft_file"
+            />
+          </div>
         </div>
         <div className="flex flex-col gap-6">
           <h3 className="text-lg leading-normal font-bold tracking-[-0.033rem] text-white">
@@ -78,7 +88,7 @@ const CreatePage: FC = () => {
           </p>
         </div>
       </form>
-      <article className="lg:stick flex h-fit flex-col gap-4 lg:top-20">
+      <article className="sticky top-28 flex h-fit flex-col gap-4">
         <h3 className="text-lg leading-normal font-bold tracking-[-0.033rem] text-white">
           Live Preview
         </h3>
