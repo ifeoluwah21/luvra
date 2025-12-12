@@ -68,7 +68,7 @@ const CreatePage: FC = () => {
                 name="price"
                 id="price"
                 placeholder="0.00"
-                className="bg-background-dark focus:ring-pry h-full w-full resize-none overflow-hidden border border-[#a0a0a0]/30 p-[15px] text-base leading-normal font-normal text-white transition-all placeholder:text-white/60 focus:ring-2 focus:outline-0"
+                className="bg-background-dark focus:ring-pry h-full w-full resize-none overflow-hidden rounded-l-[0.75rem] border border-[#a0a0a0]/30 p-[15px] text-base leading-normal font-normal text-white transition-all placeholder:text-white/60 focus:ring-2 focus:outline-0"
               />
               <span className="flex h-full items-center justify-center rounded-r-[0.75rem] border border-white/30 bg-white/5 px-4 font-medium">
                 ETH
@@ -96,7 +96,7 @@ const CreatePage: FC = () => {
           <div className="flex flex-col gap-4 rounded-[0.75rem]">
             <div className="relative overflow-hidden rounded-2xl">
               <div className="flex aspect-square w-full items-center justify-center bg-white/10">
-                <Image className="size-12" />
+                <Image className="size-12" aria-hidden={true} />
               </div>
             </div>
             <div className="flex flex-col gap-2 px-2 pb-2">

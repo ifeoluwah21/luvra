@@ -10,7 +10,7 @@ const CreateLayout: FC<PropsWithChildren> = ({ children }) => {
           </h1>
           <p className="text-custom-text text-base leading-normal font-medium">
             Upload your digital asset and provide necessary details to mint it
-            as NFT.
+            as an NFT.
           </p>
         </div>
         {children}
