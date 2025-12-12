@@ -45,7 +45,7 @@ const bidHistory: HistoryType[] = [
 const img =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuBvjtg7hb6lGuCl-AvDiV_4Xm2EBTyuTUxExAYeGBPc-nl0DOpruuoYaUaB_IkJmWdXtktFPhSMTbQEAnKIV7ROgnxlr4bUbl4F0fuUzsG-JrBlT1fB6hM0sHJ0Ak1wD7I2ISnuJw2aBwTkfheD4Rpl7xnj_gj3JiYZNDMAPZk4gi4lX-w9FNcr4mwFivH4C-9lgYlR9CX0MuSTFiAQJxsDeJBxV4wNyizgcLhPUe1hhJfDNcm9_YTUBi4OWFcTDuL52a0ZmHZJH7_r";
 
-const page = () => {
+const DropsPage = () => {
   return (
     <section>
       <div className="mt-4 grid grid-cols-1 gap-8 lg:grid-cols-5 lg:gap-12">
@@ -61,7 +61,7 @@ const page = () => {
         <div className="col-span-3 flex flex-col gap-6">
           <div className="flex flex-col gap-4">
             <h1 className="text-3xl leading-tight font-bold tracking-tight text-white md:text-4xl">
-              Bored Ape Yatch Club #8817
+              Bored Ape Yacht Club #8817
             </h1>
             <div className="flex items-center justify-between">
               <p className="text-custom-text">
@@ -192,4 +192,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default DropsPage;

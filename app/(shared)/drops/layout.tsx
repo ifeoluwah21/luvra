@@ -1,7 +1,7 @@
 import Link from "next/link";
-import React, { FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren } from "react";
 
-const layout: FC<PropsWithChildren> = ({ children }) => {
+const DropsLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <main className="mx-auto w-full max-w-[1600px] flex-1 px-4 py-5 sm:px-8 md:px-16 lg:px-24 xl:px-40">
       <div className="flex flex-wrap items-center gap-2 py-4">
@@ -27,7 +27,7 @@ const layout: FC<PropsWithChildren> = ({ children }) => {
           className="text-base leading-normal font-medium text-white transition-colors"
           href={"/drops"}
         >
-          Bored Ape Yatch Club
+          Bored Ape Yacht Club
         </Link>
       </div>
       {children}
@@ -35,4 +35,4 @@ const layout: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-export default layout;
+export default DropsLayout;
