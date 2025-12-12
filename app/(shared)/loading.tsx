@@ -1,7 +1,7 @@
 import React from "react";
 
-const loading: React.FC = () => {
-  return <div>loading...</div>;
+const Loading: React.FC = () => {
+  return <div>Loading in Drops...</div>;
 };
 
-export default loading;
+export default Loading;

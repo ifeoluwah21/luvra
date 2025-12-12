@@ -6,12 +6,14 @@ type ProductCardProps = {
   productImg: string;
   productName: string;
   productCreator: string;
+  productPrice: number;
 };
 
 const ProductCard: FC<ProductCardProps> = ({
   productImg,
   productName,
   productCreator,
+  productPrice,
 }) => {
   return (
     <article className="bg-dark-surface-200 flex flex-col gap-4 overflow-hidden rounded-2xl">
@@ -29,7 +31,7 @@ const ProductCard: FC<ProductCardProps> = ({
         </div>
         <div className="flex items-center justify-between text-sm">
           <p className="text-custom-text">Current price</p>
-          <p className="font-bold text-white">1.5 ETH</p>
+          <p className="font-bold text-white">{productPrice} ETH</p>
         </div>
         <div className="flex items-center justify-between text-sm">
           <p className="text-custom-text">Auction ends in</p>
