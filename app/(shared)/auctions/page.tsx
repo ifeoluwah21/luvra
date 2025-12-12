@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { nftProducts } from "@/lib/product";
-import React from "react";
-import ProductCard from "./_component/ProductCard";
+import React, { type FC } from "react";
+import ProductCard from "./_components/ProductCard";
 
-const AuctionsPage = () => {
+const AuctionsPage: FC = () => {
   return (
     <div className="flex flex-col gap-8 px-4 md:flex-row">
       <aside className="w-full md:w-64 lg:w-72">
