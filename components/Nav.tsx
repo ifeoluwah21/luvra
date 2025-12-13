@@ -4,31 +4,56 @@ import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import { signOut } from "next-auth/react";
+import { redirect } from "next/navigation";
 
-const Nav: React.FC<{ userAvatar?: string; userName?: string }> = ({
-  userAvatar,
-  userName,
-}) => {
+type NavProps = { userAvatar?: string; userName?: string; isAuth: boolean };
+const Nav: React.FC<NavProps> = ({ userAvatar, userName, isAuth }) => {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   return (
     <>
       {/* Nav bar for Desktop screens */}
       <nav className="hidden w-full items-center justify-center gap-4 lg:flex">
         <ul className="bg-dark-surface-200 border-custom-border/20 flex items-center gap-8 rounded-full border px-8 py-2 text-sm backdrop-blur-sm">
-          <li className="leading-normal font-semibold transition-colors hover:text-white">
-            <Link href={"/"}>Discover</Link>
+          <li>
+            <Link
+              className="px-1 py-1.5 leading-normal font-semibold transition-colors hover:text-white"
+              href={"/"}
+            >
+              Discover
+            </Link>
           </li>
-          <li className="leading-normal font-semibold transition-colors hover:text-white">
-            <Link href={"/auctions"}>Auctions</Link>
+          <li>
+            <Link
+              className="px-1 py-1.5 leading-normal font-semibold transition-colors hover:text-white"
+              href={"/auctions"}
+            >
+              Auctions
+            </Link>
           </li>
-          <li className="leading-normal font-semibold transition-colors hover:text-white">
-            <Link href={"/drops"}>Drops</Link>
+          <li>
+            <Link
+              className="px-1 py-1.5 leading-normal font-semibold transition-colors hover:text-white"
+              href={"/drops"}
+            >
+              Drops
+            </Link>
           </li>
-          <li className="leading-normal font-semibold transition-colors hover:text-white">
-            <Link href={"#"}>Profile</Link>
+          <li>
+            <Link
+              className="px-1 py-1.5 leading-normal font-semibold transition-colors hover:text-white"
+              href={"#"}
+            >
+              Profile
+            </Link>
           </li>
-          <li className="leading-normal font-semibold transition-colors hover:text-white">
-            <Link href={"/create"}>Create</Link>
+          <li>
+            <Link
+              className="px-1 py-1.5 leading-normal font-semibold transition-colors hover:text-white"
+              href={"/create"}
+            >
+              Create
+            </Link>
           </li>
         </ul>
       </nav>
@@ -49,14 +74,16 @@ const Nav: React.FC<{ userAvatar?: string; userName?: string }> = ({
           >
             <X className="size-8" />
           </Button>
-          <div className="relative h-16 w-16 overflow-clip rounded-full bg-white">
-            <Image
-              alt={userName || ""}
-              src={userAvatar || ""}
-              width={96}
-              height={96}
-            />
-          </div>
+          {isAuth && (
+            <div className="relative h-16 w-16 overflow-clip rounded-full bg-white">
+              <Image
+                alt={userName || ""}
+                src={userAvatar || ""}
+                width={96}
+                height={96}
+              />
+            </div>
+          )}
         </div>
         <ul className="flex w-full flex-col items-center gap-6">
           <li className="text-xl leading-normal font-semibold transition-colors hover:text-white">
@@ -86,22 +113,87 @@ const Nav: React.FC<{ userAvatar?: string; userName?: string }> = ({
           </li>
         </ul>
         <div className="my-auto flex w-full items-center justify-center gap-12">
-          <Button className="hover:bg-dark-surface/90 bg-dark-surface-200 h-10 max-w-[480px] min-w-[84px] rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors">
-            Sign In
-          </Button>
-          <Button className="hover:bg-pry/90 bg-pry h-10 max-w-[480px] min-w-[84px] rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors">
-            Sign Up
-          </Button>
+          {!isAuth && (
+            <>
+              <Button
+                type="button"
+                onClick={() => {
+                  redirect("/sign-in");
+                }}
+                className="hover:bg-dark-surface/90 bg-dark-surface-200 h-10 max-w-[480px] min-w-[84px] rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
+              >
+                Sign In
+              </Button>
+              <Button
+                type="button"
+                onClick={() => {
+                  redirect("sign-up");
+                }}
+                className="hover:bg-pry/90 bg-pry h-10 max-w-[480px] min-w-[84px] rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
+              >
+                Sign Up
+              </Button>
+            </>
+          )}
+          {isAuth && (
+            <Button
+              type="button"
+              onClick={() => {
+                signOut({ redirectTo: "/sign-in", redirect: true });
+                // redirect("/sign-in");
+              }}
+              className="hover:bg-dark-surface-200 h-10 max-w-[480px] min-w-[84px] rounded-full bg-transparent px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
+            >
+              Log out
+            </Button>
+          )}
         </div>
       </nav>
       {/* Desktop screen*/}
       <div className="hidden items-center gap-3 lg:flex">
-        <Button className="hover:bg-dark-surface-200 h-10 max-w-[480px] min-w-[84px] rounded-full bg-transparent px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors">
-          Sign In
-        </Button>
-        <Button className="hover:bg-pry/90 bg-pry h-10 max-w-[480px] min-w-[84px] rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors">
-          Sign Up
-        </Button>
+        {!isAuth && (
+          <>
+            <Button
+              type="button"
+              onClick={() => {
+                redirect("/sign-in");
+              }}
+              className="hover:bg-dark-surface-200 h-10 max-w-[480px] min-w-[84px] rounded-full bg-transparent px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
+            >
+              Sign In
+            </Button>
+            <Button
+              type="button"
+              onClick={() => {
+                redirect("/sign-up");
+              }}
+              className="hover:bg-pry/90 bg-pry h-10 max-w-[480px] min-w-[84px] rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
+            >
+              Sign Up
+            </Button>
+          </>
+        )}
+        {isAuth && (
+          <>
+            <Button
+              type="button"
+              onClick={() => {
+                signOut();
+              }}
+              className="hover:bg-dark-surface-200 h-10 max-w-[480px] min-w-[84px] rounded-full bg-transparent px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
+            >
+              Log out
+            </Button>
+            <div className="relative h-12 w-12 overflow-clip rounded-full bg-white">
+              <Image
+                alt={userName || ""}
+                src={userAvatar || ""}
+                width={96}
+                height={96}
+              />
+            </div>
+          </>
+        )}
       </div>
       {/* Open navigation for mobile screen */}
       <Button
