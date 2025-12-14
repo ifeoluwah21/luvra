@@ -11,5 +11,5 @@ export async function signinWithGoogle() {
 }
 
 export async function signout() {
-  await signOut({ redirectTo: "/sign-in", redirect: true });
+  await signOut({ redirectTo: "/", redirect: true });
 }
