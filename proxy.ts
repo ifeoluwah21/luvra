@@ -7,7 +7,6 @@ export async function proxy(request: NextRequest) {
   if (!session) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
-  console.log(`Gotten session - ${session.user?.id}🚀`);
   return NextResponse.next();
 }
 
