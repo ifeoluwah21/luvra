@@ -1,6 +1,6 @@
 "use server";
 
-import { signIn, signOut } from "@/lib/auth";
+import { auth, signIn, signOut } from "@/lib/auth";
 import { AuthError } from "next-auth";
 
 export async function onSubmit(formData: FormData) {

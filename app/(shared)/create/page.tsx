@@ -17,7 +17,7 @@ const CreatePage: FC = () => {
   const [price, setPrice] = useState<number>(0);
   const [state, action, isPending] = useActionState<ActionResponse, FormData>(
     async (state, formdata) => {
-      await mockDelay(2000);
+      await mockDelay(10);
       try {
         const result = await createNft(formdata);
         return result;
@@ -105,6 +105,32 @@ const CreatePage: FC = () => {
             {state.errors?.description && (
               <p className="text-xs font-medium text-red-500">
                 {state.errors.description[0]}
+              </p>
+            )}
+          </div>
+          <div className="flex w-full flex-col gap-2">
+            <label
+              className="text-custom-text text-base leading-normal font-medium"
+              htmlFor="category"
+            >
+              Category
+            </label>
+            <select
+              required
+              className="bg-background-dark focus:ring-pry h-12 w-full flex-1 resize-none overflow-hidden rounded-[0.75rem] border border-[#a0a0a0]/30 p-[15px] text-base leading-normal font-normal text-white transition-all placeholder:text-white/60 focus:ring-2 focus:outline-0"
+              name="category"
+              id="category"
+            >
+              <option defaultChecked></option>
+              <option value="art">Art</option>
+              <option value="gaming">Gaming</option>
+              <option value="music">Music</option>
+              <option value="photography">Photography</option>
+              <option value="membership">Membership</option>
+            </select>
+            {state.errors?.category && (
+              <p className="text-xs font-medium text-red-500">
+                {state.errors.category[0]}
               </p>
             )}
           </div>

@@ -1,4 +1,4 @@
-// import "../../envConfig.ts";
+import "../../envConfig.ts";
 import "dotenv/config";
 import { type DB } from "../index.ts";
 import { type NftSchema, nftTable } from "../schema/nft.ts";

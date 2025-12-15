@@ -15,6 +15,41 @@
       "when": 1764773799023,
       "tag": "0001_common_greymalkin",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1765817208785,
+      "tag": "0002_nice_ultragirl",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1765822014414,
+      "tag": "0003_free_leper_queen",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1765822198770,
+      "tag": "0004_polite_skreet",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1765822260749,
+      "tag": "0005_pink_martin_li",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1765822289110,
+      "tag": "0006_opposite_phil_sheldon",
+      "breakpoints": true
     }
   ]
 }

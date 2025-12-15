@@ -1,7 +1,10 @@
 "use server";
 
+import db from "@/db";
+import { nfts, NftSchema } from "@/db/schema/nfts";
+import { auth } from "@/lib/auth";
 import { upload } from "@/lib/cloudinary";
-import { UploadApiErrorResponse, UploadApiResponse } from "cloudinary";
+import { UploadApiResponse } from "cloudinary";
 import * as z from "zod";
 
 export type ActionResponse = {
@@ -15,6 +18,9 @@ const createSchema = z.object({
   title: z.string().trim().min(1, "Title can not be blank"),
   description: z.string().trim().min(1, "Description can not be blank"),
   price: z.number().gt(0),
+  category: z.enum(["art", "gaming", "music", "photography", "membership"], {
+    error: () => ({ message: "Please select a valid category" }),
+  }),
   nft_file: z
     .file()
     .mime([
@@ -37,8 +43,13 @@ export async function createNft(formData: FormData): Promise<ActionResponse> {
       description: formData.get("description") as string,
       price: Number(formData.get("price")),
       nft_file: formData.get("nft_file") as File,
+      category: formData.get("category") as string,
     });
     if (!validationResult.success) {
+      console.log(
+        "validation failed",
+        validationResult.error.flatten().fieldErrors,
+      );
       return {
         success: false,
         message: "Validation failed",
@@ -51,14 +62,25 @@ export async function createNft(formData: FormData): Promise<ActionResponse> {
       validationResult.data.nft_file,
     )) as UploadApiResponse;
 
+    const session = await auth();
+
     console.log(result.url);
+
     //Insert entry to db
-    const data = {
+
+    const data: NftSchema = {
       title: validationResult.data.title,
       price: validationResult.data.price,
       description: validationResult.data.description,
-      nft_url: result.url,
+      category: validationResult.data.category,
+      creator: session?.user?.name || "Me",
+      url: result.url,
+      userId: session?.user?.email || "12pakxidepsz",
     };
+    console.log(data);
+    await db.insert(nfts).values(data);
+    console.log("✅Successfull added to DB");
+    //redirect or do something
 
     return {
       success: true,

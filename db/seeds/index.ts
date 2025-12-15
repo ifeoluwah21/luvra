@@ -1,1 +1,1 @@
-export { seed as nft } from "./nft.ts";
+export { seed as nft } from "./nft";
