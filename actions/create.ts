@@ -17,7 +17,7 @@ export type ActionResponse = {
 const createSchema = z.object({
   title: z.string().trim().min(1, "Title can not be blank"),
   description: z.string().trim().min(1, "Description can not be blank"),
-  price: z.number().gt(0),
+  price: z.number().gt(0).lte(10000),
   category: z.enum(["art", "gaming", "music", "photography", "membership"], {
     error: () => ({ message: "Please select a valid category" }),
   }),
@@ -32,7 +32,10 @@ const createSchema = z.object({
       "video/mp4",
       "video/ogg",
       "video/webm",
-    ]),
+    ])
+    .refine((file) => file.size <= 3 * 1024 * 1024, {
+      message: "File must be 3MB or less",
+    }),
 });
 
 export async function createNft(formData: FormData): Promise<ActionResponse> {
@@ -61,6 +64,17 @@ export async function createNft(formData: FormData): Promise<ActionResponse> {
     const result = (await upload(
       validationResult.data.nft_file,
     )) as UploadApiResponse;
+    if (!result || typeof result.url !== "string" || !result.url) {
+      console.log(
+        `Cloudinary upload failed or returned unexpected response`,
+        result,
+      );
+      return {
+        success: false,
+        message: `Failed to upload file to cloudinary`,
+        error: "Cloudinary upload failed or returned unexpected response",
+      };
+    }
 
     const session = await auth();
 

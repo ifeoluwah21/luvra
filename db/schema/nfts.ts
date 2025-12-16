@@ -29,7 +29,7 @@ export const nfts = pgTable("nfts", {
   url: varchar("url").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
-  userId: text("user_id").notNull(),
+  userId: uuid("user_id").notNull(),
 });
 
 export const nftsRelation = relations(nfts, ({ one }) => ({

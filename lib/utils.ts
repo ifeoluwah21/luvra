@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export async function mockDelay(number: number) {
   await new Promise((resolve) => {
     setTimeout(() => {
-      resolve("Completed");
+      resolve(undefined);
     }, number);
   });
 }

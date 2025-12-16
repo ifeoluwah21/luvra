@@ -5,6 +5,7 @@ interface FormGroupProps {
   type: React.HTMLInputTypeAttribute;
   placeholder: string;
   autocomplete?: React.HTMLInputAutoCompleteAttribute;
+  error?: string[];
 }
 
 const FormGroup: React.FC<FormGroupProps> = ({
@@ -12,6 +13,7 @@ const FormGroup: React.FC<FormGroupProps> = ({
   type,
   placeholder,
   autocomplete,
+  error,
 }) => {
   return (
     <div className="flex w-full flex-col">
@@ -29,6 +31,15 @@ const FormGroup: React.FC<FormGroupProps> = ({
         autoComplete={autocomplete}
         className="border-custom-border focus:ring-pry/50 placeholder:text-custom-text/60 h-14 rounded-2xl border p-[15px] text-base font-normal focus:ring-2 focus:outline-0"
       />
+      {error && (
+        <ul>
+          {error.map((err) => (
+            <li key={err} className="text-xs font-medium text-red-500">
+              - {err}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

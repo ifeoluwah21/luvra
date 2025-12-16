@@ -1,14 +1,12 @@
-// export { auth as proxy } from "./lib/auth";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { auth } from "./lib/auth";
-export async function proxy(request: NextRequest) {
-  const session = await auth();
 
-  if (!session) {
-    return NextResponse.redirect(new URL("/sign-in", request.url));
+export default auth((req) => {
+  if (!req.auth) {
+    return NextResponse.redirect(new URL("/sign-in", req.nextUrl.origin));
   }
   return NextResponse.next();
-}
+});
 
 export const config = {
   matcher: ["/create", "/profile"],

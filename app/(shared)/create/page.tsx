@@ -24,7 +24,7 @@ const CreatePage: FC = () => {
       } catch (err) {
         return {
           success: false,
-          message: (err as Error).message || "An error occured",
+          message: (err as Error).message || "An error occurred",
         };
       }
     },
@@ -120,8 +120,9 @@ const CreatePage: FC = () => {
               className="bg-background-dark focus:ring-pry h-12 w-full flex-1 resize-none overflow-hidden rounded-[0.75rem] border border-[#a0a0a0]/30 p-[15px] text-base leading-normal font-normal text-white transition-all placeholder:text-white/60 focus:ring-2 focus:outline-0"
               name="category"
               id="category"
+              defaultValue={""}
             >
-              <option defaultChecked></option>
+              <option value={""} disabled></option>
               <option value="art">Art</option>
               <option value="gaming">Gaming</option>
               <option value="music">Music</option>
@@ -199,7 +200,11 @@ const CreatePage: FC = () => {
                   src={URL.createObjectURL(nftFile)}
                   width={512}
                   height={512}
-                  alt="random"
+                  alt={
+                    title
+                      ? `Preview of NFT image : ${title}`
+                      : `Preview of uploaded NFT image`
+                  }
                   className="aspect-square object-contain"
                 />
               )}

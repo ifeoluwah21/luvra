@@ -7,6 +7,7 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
   cloud_name: process.env.CLOUDNAME,
+  secure: true,
 });
 
 export async function upload(file: File) {
@@ -17,7 +18,6 @@ export async function upload(file: File) {
       .upload_stream({}, (err, result) => {
         if (err) {
           reject(err);
-          throw err;
         }
         resolve(result);
       })
