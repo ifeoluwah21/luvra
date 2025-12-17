@@ -27,19 +27,25 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       async authorize(credentials) {
         const user = await getUserByEmail(credentials.email as string);
-        if (user && user.password) {
-          return (await verifyPassword(
-            credentials.password as string,
-            user.password,
-          ))
-            ? user
-            : null;
+        //If user does not exist, throw error with invalid credentials
+        if (!user) {
+          throw new Error("Invalid Credentials.");
         }
-        return null;
+        if (!user.password) {
+          throw new Error("Sign in with your OAuth provider.");
+        }
+        return (await verifyPassword(
+          credentials.password as string,
+          user.password,
+        ))
+          ? user
+          : null;
       },
+      type: "credentials",
     }),
   ],
   session: {
+    strategy: "jwt",
     //1 day
     maxAge: 1 * 24 * 60 * 60,
   },

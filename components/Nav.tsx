@@ -78,7 +78,7 @@ const Nav: React.FC<NavProps> = ({ userAvatar, userName, isAuth }) => {
             <div className="relative h-16 w-16 overflow-clip rounded-full bg-white">
               <Image
                 alt={userName || ""}
-                src={userAvatar || ""}
+                src={userAvatar || "/placeholder.png"}
                 width={96}
                 height={96}
               />
@@ -187,7 +187,7 @@ const Nav: React.FC<NavProps> = ({ userAvatar, userName, isAuth }) => {
             <div className="relative h-12 w-12 overflow-clip rounded-full bg-white">
               <Image
                 alt={userName || ""}
-                src={userAvatar || ""}
+                src={userAvatar || "/placeholder.png"}
                 width={96}
                 height={96}
               />
