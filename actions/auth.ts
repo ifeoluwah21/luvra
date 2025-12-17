@@ -55,6 +55,19 @@ const signupFormSchema = z
     path: ["confirm_password"],
   });
 
+const signinFormSchema = z.object({
+  email: z.email({ error: "Please enter a valid email." }),
+  password: z
+    .string()
+    .min(8, { error: "Be at least 8 characters long." })
+    .regex(/[a-zA-z]/, { error: "Contain at least one letter." })
+    .regex(/[0-9]/, "Contain at least one number.")
+    .regex(/[^a-zA-Z0-9]/, {
+      error: "Contain at least one special character.",
+    })
+    .trim(),
+});
+
 export type FormActionState = {
   success: boolean;
   errors?: {
@@ -115,4 +128,30 @@ export async function signupWithCredentials(
   });
 
   return { success: true, message: "Successfully created and logged in User" };
+}
+
+export async function signInWithCredential(
+  formData: FormData,
+): Promise<FormActionState> {
+  // Validate the form data
+  const validationResult = signinFormSchema.safeParse({
+    email: formData.get("email") as string,
+    password: formData.get("password") as string,
+  });
+
+  //Return early if validation fails
+  if (!validationResult.success) {
+    return {
+      success: false,
+      errors: validationResult.error.flatten().fieldErrors,
+      message: "Validation failed",
+    };
+  }
+
+  //Prepare data
+  const { email, password } = validationResult.data;
+
+  await signIn("credentials", { email, password, redirectTo: "/" });
+
+  return { success: true, message: "User is logged in" };
 }
