@@ -71,7 +71,7 @@ export async function createNft(formData: FormData): Promise<ActionResponse> {
     }
     // Get user info from session
     const session = await auth();
-    //  Return error message if user is not authenticated
+    // Return error message if user is not authenticated
     if (!session) {
       return { success: false, message: "User is not authenticated." };
     }
@@ -93,7 +93,7 @@ export async function createNft(formData: FormData): Promise<ActionResponse> {
     // Insert data into db
     await db.insert(nfts).values(data);
     console.log("✅Successfull added to DB");
-    //redirect or do something
+    // Redirect or do something
 
     return {
       success: true,

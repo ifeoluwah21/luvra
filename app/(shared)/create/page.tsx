@@ -22,7 +22,6 @@ const CreatePage: FC = () => {
       try {
         const result = await createNft(formdata);
         if (result.success) {
-          console.log("toast-success");
           toast.success(result.message);
         } else {
           toast.error(result.message);
@@ -40,7 +39,6 @@ const CreatePage: FC = () => {
   );
   useEffect(() => {
     return () => {
-      console.log("Cleaned the Blob file from memory");
       URL.revokeObjectURL(url);
     };
   }, [url]);

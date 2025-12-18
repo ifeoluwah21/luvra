@@ -2,7 +2,6 @@ import {
   doublePrecision,
   pgEnum,
   pgTable,
-  primaryKey,
   text,
   timestamp,
 } from "drizzle-orm/pg-core";
@@ -17,32 +16,22 @@ export const categoryEnum = pgEnum("category", [
   "photography",
   "membership",
 ]);
-export const nfts = pgTable(
-  "nfts",
-  {
-    id: text("id")
-      .primaryKey()
-      .$defaultFn(() => crypto.randomUUID()),
-    title: text("title").notNull(),
-    description: text("description").notNull(),
-    price: doublePrecision("price").notNull(),
-    creator: text("creator").notNull(),
-    category: categoryEnum("category").notNull(),
-    url: text("url").notNull(),
-    createdAt: timestamp("created_at").defaultNow().notNull(),
-    updatedAt: timestamp("updated_at").defaultNow().notNull(),
-    userId: text("user_id")
-      .notNull()
-      .references(() => users.id),
-  },
-  (nft) => [
-    {
-      compoundKey: primaryKey({
-        columns: [nft.userId],
-      }),
-    },
-  ],
-);
+export const nfts = pgTable("nfts", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  price: doublePrecision("price").notNull(),
+  creator: text("creator").notNull(),
+  category: categoryEnum("category").notNull(),
+  url: text("url").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => users.id),
+});
 
 export const nftSchema = createInsertSchema(nfts);
 export type NftSchema = z.infer<typeof nftSchema>;
