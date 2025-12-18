@@ -29,6 +29,9 @@ const SignUpForm: React.FC = () => {
   );
   return (
     <form action={action} className="flex w-full flex-col items-center gap-4">
+      {!state.success && state.message && (
+        <p className="text-xs font-medium text-red-500">{state.message}</p>
+      )}
       <FormGroup
         name="name"
         type="name"

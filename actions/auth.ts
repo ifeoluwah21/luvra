@@ -2,7 +2,7 @@
 
 import { createUser, signIn, signOut } from "@/lib/auth";
 import { getUserByEmail } from "@/lib/dal";
-import { AuthError } from "next-auth";
+import { AuthError, CredentialsSignin } from "next-auth";
 import * as z from "zod";
 
 export async function onSubmit(formData: FormData) {
@@ -51,7 +51,7 @@ const signupFormSchema = z
       .trim(),
   })
   .refine((data) => data.confirm_password === data.password, {
-    error: "Passwords don\'t match",
+    error: "Passwords don't match",
     path: ["confirm_password"],
   });
 
@@ -121,15 +121,25 @@ export async function signupWithCredentials(
 
   // signIn with the name and email
   console.log("sign in user now");
-  await signIn("credentials", {
-    email: email,
-    password: "password",
-    redirectTo: "/",
-  });
-
-  return { success: true, message: "Successfully created and logged in User" };
+  try {
+    await signIn("credentials", {
+      email,
+      password,
+      redirectTo: "/",
+    });
+    return {
+      success: true,
+      message: "Successfully created and logged in User",
+    };
+  } catch (err) {
+    if (err instanceof CredentialsSignin) {
+      return { success: false, message: `Type: ${err.type}. ${err.message}` };
+    }
+    throw err;
+  }
 }
 
+// Sign in with credential function
 export async function signInWithCredential(
   formData: FormData,
 ): Promise<FormActionState> {
@@ -151,7 +161,13 @@ export async function signInWithCredential(
   //Prepare data
   const { email, password } = validationResult.data;
 
-  await signIn("credentials", { email, password, redirectTo: "/" });
-
-  return { success: true, message: "User is logged in" };
+  try {
+    await signIn("credentials", { email, password, redirectTo: "/" });
+    return { success: true, message: "User is logged in" };
+  } catch (err) {
+    if (err instanceof CredentialsSignin) {
+      return { success: false, message: `Type: ${err.type}. ${err.message}` };
+    }
+    throw err;
+  }
 }

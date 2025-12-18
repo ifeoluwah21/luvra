@@ -12,7 +12,7 @@ import * as z from "zod";
 export const authenticators = pgTable(
   "authenticator",
   {
-    crendentialId: text("credential_id").notNull().unique(),
+    credentialId: text("credential_id").notNull().unique(),
     userId: text("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
@@ -26,7 +26,7 @@ export const authenticators = pgTable(
   (authenticator) => [
     {
       compoundKey: primaryKey({
-        columns: [authenticator.userId, authenticator.crendentialId],
+        columns: [authenticator.userId, authenticator.credentialId],
       }),
     },
   ],

@@ -66,17 +66,20 @@ export async function createNft(formData: FormData): Promise<ActionResponse> {
     )) as UploadApiResponse;
     if (!result || typeof result.url !== "string" || !result.url) {
       console.log(
-        `Cloudinary upload failed or returned unexpected response`,
+        `Cloudinary upload failed or returned unexpected response.`,
         result,
       );
       return {
         success: false,
-        message: `Failed to upload file to cloudinary`,
-        error: "Cloudinary upload failed or returned unexpected response",
+        message: `Failed to upload file to cloudinary.`,
+        error: "Cloudinary upload failed or returned unexpected response.",
       };
     }
 
     const session = await auth();
+    if (!session) {
+      return { success: false, message: "User is not authenticated." };
+    }
 
     console.log(result.url);
 
@@ -87,9 +90,9 @@ export async function createNft(formData: FormData): Promise<ActionResponse> {
       price: validationResult.data.price,
       description: validationResult.data.description,
       category: validationResult.data.category,
-      creator: session?.user?.name || "Me",
+      creator: session.user?.name as string,
       url: result.url,
-      userId: session?.user?.email || "12pakxidepsz",
+      userId: session.user?.email as string,
     };
     console.log(data);
     await db.insert(nfts).values(data);

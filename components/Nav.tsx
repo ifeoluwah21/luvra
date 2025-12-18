@@ -5,11 +5,12 @@ import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 type NavProps = { userAvatar?: string; userName?: string; isAuth: boolean };
 const Nav: React.FC<NavProps> = ({ userAvatar, userName, isAuth }) => {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
+  const router = useRouter();
   return (
     <>
       {/* Nav bar for Desktop screens */}
@@ -118,7 +119,7 @@ const Nav: React.FC<NavProps> = ({ userAvatar, userName, isAuth }) => {
               <Button
                 type="button"
                 onClick={() => {
-                  redirect("/sign-in");
+                  router.push("/sign-in");
                 }}
                 className="hover:bg-dark-surface/90 bg-dark-surface-200 h-10 max-w-[480px] min-w-[84px] rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
               >
@@ -127,7 +128,7 @@ const Nav: React.FC<NavProps> = ({ userAvatar, userName, isAuth }) => {
               <Button
                 type="button"
                 onClick={() => {
-                  redirect("sign-up");
+                  router.push("sign-up");
                 }}
                 className="hover:bg-pry/90 bg-pry h-10 max-w-[480px] min-w-[84px] rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
               >
@@ -156,7 +157,7 @@ const Nav: React.FC<NavProps> = ({ userAvatar, userName, isAuth }) => {
             <Button
               type="button"
               onClick={() => {
-                redirect("/sign-in");
+                router.push("/sign-in");
               }}
               className="hover:bg-dark-surface-200 h-10 max-w-[480px] min-w-[84px] rounded-full bg-transparent px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
             >
@@ -165,7 +166,7 @@ const Nav: React.FC<NavProps> = ({ userAvatar, userName, isAuth }) => {
             <Button
               type="button"
               onClick={() => {
-                redirect("/sign-up");
+                router.push("/sign-up");
               }}
               className="hover:bg-pry/90 bg-pry h-10 max-w-[480px] min-w-[84px] rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
             >
