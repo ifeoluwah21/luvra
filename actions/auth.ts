@@ -76,7 +76,7 @@ export type FormActionState = {
     password?: string[];
     confirm_password?: string[];
   };
-  message?: string;
+  message: string;
 };
 
 export async function signupWithCredentials(
@@ -149,7 +149,7 @@ export async function signInWithCredential(
     password: formData.get("password") as string,
   });
 
-  //Return early if validation fails
+  //  Return early if validation fails
   if (!validationResult.success) {
     return {
       success: false,
@@ -158,7 +158,7 @@ export async function signInWithCredential(
     };
   }
 
-  //Prepare data
+  //  Prepare validated data
   const { email, password } = validationResult.data;
 
   try {
