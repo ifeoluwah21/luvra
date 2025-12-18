@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useActionState } from "react";
+import React, { useActionState, useTransition } from "react";
 import { Button } from "./ui/button";
 import { Wallet } from "lucide-react";
 import {
@@ -9,14 +9,21 @@ import {
   signupWithCredentials,
 } from "@/actions/auth";
 import FormGroup from "./FormGroup";
+import { ClipLoader } from "react-spinners";
+import toast from "react-hot-toast";
 
-const initialFormActionState: FormActionState = { success: false };
+const initialFormActionState: FormActionState = { success: false, message: "" };
 
 const SignUpForm: React.FC = () => {
   const [state, action, isPending] = useActionState<FormActionState, FormData>(
     async (prevState, formData) => {
       try {
         const result = await signupWithCredentials(formData);
+        if (result.success) {
+          toast.success(result.message);
+        } else {
+          toast.error(result.message);
+        }
         return result;
       } catch (err) {
         return {
@@ -27,6 +34,7 @@ const SignUpForm: React.FC = () => {
     },
     initialFormActionState,
   );
+  const [isActionPending, startTransition] = useTransition();
   return (
     <form action={action} className="flex w-full flex-col items-center gap-4">
       {!state.success && state.message && (
@@ -65,6 +73,7 @@ const SignUpForm: React.FC = () => {
         type="submit"
         className="bg-pry disabled:bg-pry/50 hover:bg-pry/90 mt-4 h-14 w-full cursor-pointer rounded-2xl text-base leading-normal font-bold tracking-[-0.015rem] transition-colors"
       >
+        <ClipLoader size={24} loading={isPending} color="#ffffff" />
         <span>Sign Up</span>
       </Button>
       <div className="flex w-full items-center gap-4 py-2">
@@ -73,10 +82,16 @@ const SignUpForm: React.FC = () => {
         <hr className="border-custom-border flex-1 border-t" />
       </div>
       <Button
-        formAction={signinWithGoogle}
+        disabled={isActionPending}
+        formAction={() => {
+          startTransition(async () => {
+            await signinWithGoogle();
+          });
+        }}
         variant={"outline"}
-        className="hover:bg-custom-border/20 text-custom-text hover:text-custom-text h-14 w-full cursor-pointer rounded-2xl bg-transparent text-base leading-normal font-bold tracking-[-0.015rem] transition-colors"
+        className="hover:bg-custom-border/20 text-custom-text hover:text-custom-text flex h-14 w-full cursor-pointer items-center gap-3 rounded-2xl bg-transparent text-base leading-normal font-bold tracking-[-0.015rem] transition-colors disabled:bg-white/20"
       >
+        <ClipLoader size={24} color="#a0a0a0" loading={isActionPending} />
         <div className="flex items-center gap-4">
           <svg
             role="img"
