@@ -1,10 +1,9 @@
 "use client";
 import { ActionResponse, createNft } from "@/actions/create";
 import { Button } from "@/components/ui/button";
-import { mockDelay } from "@/lib/utils";
 import { Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
-import { useActionState, useState, type FC } from "react";
+import { useActionState, useEffect, useState, type FC } from "react";
 
 const initialActionState: ActionResponse = {
   success: false,
@@ -15,9 +14,9 @@ const CreatePage: FC = () => {
   const [nftFile, setNftFile] = useState<File | null>(null);
   const [title, setTitle] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
+  const [url, setUrl] = useState("");
   const [state, action, isPending] = useActionState<ActionResponse, FormData>(
     async (state, formdata) => {
-      await mockDelay(10);
       try {
         const result = await createNft(formdata);
         return result;
@@ -30,6 +29,13 @@ const CreatePage: FC = () => {
     },
     initialActionState,
   );
+  useEffect(() => {
+    // console.log("Cleaned the Blob file from memory");
+    return () => {
+      console.log("Cleaned the Blob file from memory");
+      URL.revokeObjectURL(url);
+    };
+  }, [url]);
   return (
     <section className="grid grid-cols-1 gap-12 py-4 lg:grid-cols-2">
       <form action={action} className="flex flex-col gap-8">
@@ -48,7 +54,11 @@ const CreatePage: FC = () => {
               id="nft_file"
               accept="image/*, video/*"
               onChange={(e) => {
-                setNftFile(e.currentTarget.files?.[0] as File);
+                const file = e.currentTarget.files?.[0] as File;
+                setNftFile(file);
+                if (file) {
+                  setUrl(URL.createObjectURL(file));
+                }
               }}
               required
             />
@@ -150,6 +160,8 @@ const CreatePage: FC = () => {
                 id="price"
                 placeholder="0.00"
                 min={0}
+                max={10000}
+                step={0.01}
                 onChange={(e) => {
                   const price = e.currentTarget.value;
                   setPrice(+price);
@@ -195,9 +207,9 @@ const CreatePage: FC = () => {
                   <ImageIcon className="size-12" aria-hidden={true} />
                 </div>
               )}
-              {nftFile && (
+              {url && (
                 <Image
-                  src={URL.createObjectURL(nftFile)}
+                  src={url}
                   width={512}
                   height={512}
                   alt={

@@ -4,6 +4,7 @@ import db from "@/db";
 import { nfts, NftSchema } from "@/db/schema/nfts";
 import { auth } from "@/lib/auth";
 import { upload } from "@/lib/cloudinary";
+import { getUserByEmail } from "@/lib/dal";
 import { UploadApiResponse } from "cloudinary";
 import * as z from "zod";
 
@@ -39,8 +40,8 @@ const createSchema = z.object({
 });
 
 export async function createNft(formData: FormData): Promise<ActionResponse> {
-  console.log(formData);
   try {
+    // Validate the formdata
     const validationResult = createSchema.safeParse({
       title: formData.get("title") as string,
       description: formData.get("description") as string,
@@ -48,43 +49,37 @@ export async function createNft(formData: FormData): Promise<ActionResponse> {
       nft_file: formData.get("nft_file") as File,
       category: formData.get("category") as string,
     });
+    // Return error message if validation fails
     if (!validationResult.success) {
-      console.log(
-        "validation failed",
-        validationResult.error.flatten().fieldErrors,
-      );
       return {
         success: false,
         message: "Validation failed",
         errors: validationResult.error.flatten().fieldErrors,
       };
     }
-    //Upload image to cloudinary
-
+    // Upload image to cloudinary
     const result = (await upload(
       validationResult.data.nft_file,
     )) as UploadApiResponse;
+    // Return error message if uploading to cloudinary fails
     if (!result || typeof result.url !== "string" || !result.url) {
-      console.log(
-        `Cloudinary upload failed or returned unexpected response.`,
-        result,
-      );
       return {
         success: false,
         message: `Failed to upload file to cloudinary.`,
         error: "Cloudinary upload failed or returned unexpected response.",
       };
     }
-
+    // Get user info from session
     const session = await auth();
+    //  Return error message if user is not authenticated
     if (!session) {
       return { success: false, message: "User is not authenticated." };
     }
 
-    console.log(result.url);
+    // Get users from db since we dont have userId included in the session data
+    const user = await getUserByEmail(session.user?.email as string);
 
-    //Insert entry to db
-
+    // Prepare the data for insertion into db
     const data: NftSchema = {
       title: validationResult.data.title,
       price: validationResult.data.price,
@@ -92,9 +87,10 @@ export async function createNft(formData: FormData): Promise<ActionResponse> {
       category: validationResult.data.category,
       creator: session.user?.name as string,
       url: result.url,
-      userId: session.user?.email as string,
+      userId: user!.id,
     };
-    console.log(data);
+
+    // Insert data into db
     await db.insert(nfts).values(data);
     console.log("✅Successfull added to DB");
     //redirect or do something
