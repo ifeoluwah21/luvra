@@ -1,10 +1,11 @@
 "use client";
 import { ActionResponse, createNft } from "@/actions/create";
 import { Button } from "@/components/ui/button";
-import { mockDelay } from "@/lib/utils";
 import { Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
-import { useActionState, useState, type FC } from "react";
+import { useActionState, useEffect, useState, type FC } from "react";
+import { toast } from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
 
 const initialActionState: ActionResponse = {
   success: false,
@@ -15,13 +16,19 @@ const CreatePage: FC = () => {
   const [nftFile, setNftFile] = useState<File | null>(null);
   const [title, setTitle] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
+  const [url, setUrl] = useState("");
   const [state, action, isPending] = useActionState<ActionResponse, FormData>(
     async (state, formdata) => {
-      await mockDelay(10);
       try {
         const result = await createNft(formdata);
+        if (result.success) {
+          toast.success(result.message);
+        } else {
+          toast.error(result.message);
+        }
         return result;
       } catch (err) {
+        toast.error((err as Error).message);
         return {
           success: false,
           message: (err as Error).message || "An error occurred",
@@ -30,6 +37,12 @@ const CreatePage: FC = () => {
     },
     initialActionState,
   );
+  useEffect(() => {
+    return () => {
+      URL.revokeObjectURL(url);
+    };
+  }, [url]);
+
   return (
     <section className="grid grid-cols-1 gap-12 py-4 lg:grid-cols-2">
       <form action={action} className="flex flex-col gap-8">
@@ -48,7 +61,11 @@ const CreatePage: FC = () => {
               id="nft_file"
               accept="image/*, video/*"
               onChange={(e) => {
-                setNftFile(e.currentTarget.files?.[0] as File);
+                const file = e.currentTarget.files?.[0] as File;
+                setNftFile(file);
+                if (file) {
+                  setUrl(URL.createObjectURL(file));
+                }
               }}
               required
             />
@@ -150,6 +167,8 @@ const CreatePage: FC = () => {
                 id="price"
                 placeholder="0.00"
                 min={0}
+                max={10000}
+                step={0.01}
                 onChange={(e) => {
                   const price = e.currentTarget.value;
                   setPrice(+price);
@@ -176,7 +195,14 @@ const CreatePage: FC = () => {
             disabled={isPending}
             className="bg-pry disabled:bg-pry/50 hover:bg-pry/90 mx-auto flex h-12 w-full max-w-[480px] min-w-[84px] items-center justify-center overflow-hidden rounded-full px-6 text-base leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
           >
-            {isPending ? <span>Creating NFT...</span> : <span>Create NFT</span>}
+            {isPending ? (
+              <span className="flex items-center gap-2">
+                <ClipLoader size={24} color="#ffffff" loading={isPending} />{" "}
+                <span>Creating NFT...</span>
+              </span>
+            ) : (
+              <span>Create NFT</span>
+            )}
           </Button>
           <p className="text-custom-text text-center text-sm">
             A network fee will be required to mint your NFT.
@@ -195,9 +221,9 @@ const CreatePage: FC = () => {
                   <ImageIcon className="size-12" aria-hidden={true} />
                 </div>
               )}
-              {nftFile && (
+              {url && (
                 <Image
-                  src={URL.createObjectURL(nftFile)}
+                  src={url}
                   width={512}
                   height={512}
                   alt={
