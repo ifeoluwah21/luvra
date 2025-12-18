@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { useActionState, useEffect, useState, type FC } from "react";
+import { toast } from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
 
 const initialActionState: ActionResponse = {
   success: false,
@@ -19,8 +21,15 @@ const CreatePage: FC = () => {
     async (state, formdata) => {
       try {
         const result = await createNft(formdata);
+        if (result.success) {
+          console.log("toast-success");
+          toast.success(result.message);
+        } else {
+          toast.error(result.message);
+        }
         return result;
       } catch (err) {
+        toast.error((err as Error).message);
         return {
           success: false,
           message: (err as Error).message || "An error occurred",
@@ -30,12 +39,12 @@ const CreatePage: FC = () => {
     initialActionState,
   );
   useEffect(() => {
-    // console.log("Cleaned the Blob file from memory");
     return () => {
       console.log("Cleaned the Blob file from memory");
       URL.revokeObjectURL(url);
     };
   }, [url]);
+
   return (
     <section className="grid grid-cols-1 gap-12 py-4 lg:grid-cols-2">
       <form action={action} className="flex flex-col gap-8">
@@ -188,7 +197,14 @@ const CreatePage: FC = () => {
             disabled={isPending}
             className="bg-pry disabled:bg-pry/50 hover:bg-pry/90 mx-auto flex h-12 w-full max-w-[480px] min-w-[84px] items-center justify-center overflow-hidden rounded-full px-6 text-base leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
           >
-            {isPending ? <span>Creating NFT...</span> : <span>Create NFT</span>}
+            {isPending ? (
+              <span className="flex items-center gap-2">
+                <ClipLoader size={24} color="#ffffff" loading={isPending} />{" "}
+                <span>Creating NFT...</span>
+              </span>
+            ) : (
+              <span>Create NFT</span>
+            )}
           </Button>
           <p className="text-custom-text text-center text-sm">
             A network fee will be required to mint your NFT.
