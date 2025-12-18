@@ -19,12 +19,18 @@ const Hero: React.FC = () => {
             </p>
           </div>
           <div className="flex items-center gap-4">
-            <Button className="bg-pry shadow-accent hover:bg-pry/90 h-10 max-w-[480px] min-w-[84px] rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] transition-colors @[480px]:h-12 @[480px]:px-5 @[480px]:text-base">
-              <Link href={"#"}>Explore</Link>
-            </Button>
-            <Button className="bg-dark-surface/80 shadow-accent hover:bg-dark-surface/20 border-border-light/20 h-10 max-w-[480px] min-w-[84px] rounded-full border px-4 text-sm leading-normal font-bold tracking-[0.015rem] transition-colors @[480px]:h-12 @[480px]:px-5 @[480px]:text-base">
-              <Link href={"#"}>Create</Link>
-            </Button>
+            <Link
+              className="bg-pry shadow-accent hover:bg-pry/90 flex h-10 max-w-[480px] min-w-[84px] items-center justify-center rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors @[480px]:h-12 @[480px]:px-5 @[480px]:text-base"
+              href={"/auctions"}
+            >
+              Explore
+            </Link>
+            <Link
+              className="bg-dark-surface/80 shadow-accent hover:bg-dark-surface/20 border-border-light/20 flex h-10 max-w-[480px] min-w-[84px] items-center justify-center rounded-full border px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors @[480px]:h-12 @[480px]:px-5 @[480px]:text-base"
+              href={"/create"}
+            >
+              Create
+            </Link>
           </div>
         </div>
         <div className="relative aspect-square w-full flex-1 overflow-hidden rounded-4xl shadow-xl @[480px]:min-w-[400px] @[864px]:w-full">

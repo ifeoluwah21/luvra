@@ -1,34 +1,69 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useActionState } from "react";
 import { Button } from "./ui/button";
 import { Wallet } from "lucide-react";
-import { signinWithGoogle } from "@/actions/auth";
+import {
+  FormActionState,
+  signinWithGoogle,
+  signupWithCredentials,
+} from "@/actions/auth";
 import FormGroup from "./FormGroup";
 
+const initialFormActionState: FormActionState = { success: false };
+
 const SignUpForm: React.FC = () => {
+  const [state, action, isPending] = useActionState<FormActionState, FormData>(
+    async (prevState, formData) => {
+      try {
+        const result = await signupWithCredentials(formData);
+        return result;
+      } catch (err) {
+        return {
+          success: false,
+          message: (err as Error).message || "An error occurred",
+        };
+      }
+    },
+    initialFormActionState,
+  );
   return (
-    <form className="flex w-full flex-col items-center gap-4">
+    <form action={action} className="flex w-full flex-col items-center gap-4">
+      {!state.success && state.message && (
+        <p className="text-xs font-medium text-red-500">{state.message}</p>
+      )}
+      <FormGroup
+        name="name"
+        type="name"
+        placeholder="Enter your name"
+        autocomplete="off"
+        error={state?.errors?.name}
+      />
       <FormGroup
         name="email"
         type="email"
         placeholder="Enter your email address"
         autocomplete="off"
+        error={state?.errors?.email}
       />
       <FormGroup
         name="password"
         type="password"
         placeholder="8+ characters"
         autocomplete="off"
+        error={state.errors?.password}
       />
       <FormGroup
-        name="confirm-password"
+        name="confirm_password"
         type="password"
         placeholder="Re-enter your password"
         autocomplete="off"
+        error={state.errors?.confirm_password}
       />
       <Button
+        disabled={isPending}
         type="submit"
-        className="bg-pry hover:bg-pry/90 mt-4 h-14 w-full cursor-pointer rounded-2xl text-base leading-normal font-bold tracking-[-0.015rem] transition-colors"
+        className="bg-pry disabled:bg-pry/50 hover:bg-pry/90 mt-4 h-14 w-full cursor-pointer rounded-2xl text-base leading-normal font-bold tracking-[-0.015rem] transition-colors"
       >
         <span>Sign Up</span>
       </Button>

@@ -1,29 +1,52 @@
 "use client";
-import React from "react";
+import React, { useActionState } from "react";
 import FormGroup from "./FormGroup";
 import { Button } from "./ui/button";
 import { Wallet } from "lucide-react";
 import Link from "next/link";
-import { onSubmit, signinWithGoogle } from "@/actions/auth";
+import {
+  FormActionState,
+  signInWithCredential,
+  signinWithGoogle,
+} from "@/actions/auth";
+
+const initialFormActionState: FormActionState = { success: false };
 
 const SignInForm: React.FC = () => {
+  const [state, action, isPending] = useActionState<FormActionState, FormData>(
+    async (prevState, formData) => {
+      try {
+        const result = await signInWithCredential(formData);
+        return result;
+      } catch (err) {
+        return {
+          success: false,
+          message: (err as Error).message || "An error occurred",
+        };
+      }
+    },
+    initialFormActionState,
+  );
   return (
-    <form action={onSubmit} className="flex w-full flex-col items-center gap-4">
+    <form action={action} className="flex w-full flex-col items-center gap-4">
       <FormGroup
         name="email"
         type="email"
         placeholder="Enter your email address"
         autocomplete="off"
+        error={state.errors?.email}
       />
       <FormGroup
         name="password"
         type="password"
         placeholder="8+ characters"
         autocomplete="off"
+        error={state.errors?.password}
       />
       <Button
+        disabled={isPending}
         type="submit"
-        className="bg-pry hover:bg-pry/90 mt-4 h-14 w-full cursor-pointer rounded-2xl text-base leading-normal font-bold tracking-[-0.015rem] transition-colors"
+        className="bg-pry disabled:bg-pry/50 hover:bg-pry/90 mt-4 h-14 w-full cursor-pointer rounded-2xl text-base leading-normal font-bold tracking-[-0.015rem] transition-colors"
       >
         <span>Sign In</span>
       </Button>

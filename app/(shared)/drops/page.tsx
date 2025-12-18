@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Heart, Share2 } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import type { FC } from "react";
 
 type HistoryType = {
   event: "bid" | "transfer" | "list";
@@ -45,7 +45,7 @@ const bidHistory: HistoryType[] = [
 const img =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuBvjtg7hb6lGuCl-AvDiV_4Xm2EBTyuTUxExAYeGBPc-nl0DOpruuoYaUaB_IkJmWdXtktFPhSMTbQEAnKIV7ROgnxlr4bUbl4F0fuUzsG-JrBlT1fB6hM0sHJ0Ak1wD7I2ISnuJw2aBwTkfheD4Rpl7xnj_gj3JiYZNDMAPZk4gi4lX-w9FNcr4mwFivH4C-9lgYlR9CX0MuSTFiAQJxsDeJBxV4wNyizgcLhPUe1hhJfDNcm9_YTUBi4OWFcTDuL52a0ZmHZJH7_r";
 
-const DropsPage = () => {
+const DropsPage: FC = () => {
   return (
     <section>
       <div className="mt-4 grid grid-cols-1 gap-8 lg:grid-cols-5 lg:gap-12">

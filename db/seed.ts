@@ -1,7 +1,7 @@
 import { sql, Table } from "drizzle-orm";
-import * as seeds from "./seeds/index.ts";
-import * as schema from "./schema/index.ts";
-import db, { type DB } from "./index.ts";
+import * as seeds from "./seeds/index";
+import * as schema from "./schema/index";
+import db, { type DB } from "./index";
 
 async function resetTable(db: DB, table: Table) {
   return db.execute(sql`truncate table ${table} restart identity cascade`);
