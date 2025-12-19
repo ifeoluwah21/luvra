@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { type DefaultSession } from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
@@ -9,6 +9,16 @@ import { accounts } from "@/db/schema/accounts";
 import { verificationToken } from "@/db/schema/verificationToken";
 import { getUserByEmail } from "./dal";
 import { sessions } from "@/db/schema/sessions";
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      name: string;
+      id: string;
+      email: string;
+    } & DefaultSession["user"];
+  }
+}
 
 //
 export const { handlers, signIn, signOut, auth } = NextAuth({

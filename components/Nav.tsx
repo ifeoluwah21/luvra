@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type NavProps = { userAvatar?: string; userName?: string; isAuth: boolean };
 const Nav: React.FC<NavProps> = ({ userAvatar, userName, isAuth }) => {
