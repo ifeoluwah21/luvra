@@ -1,8 +1,8 @@
 import Hero from "@/components/Hero";
-import NftCard from "@/components/NftCard";
+import NftCardSkeleton from "@/components/NftCardSkeleton";
+import Trending from "@/components/Trending";
 import { Button } from "@/components/ui/button";
-import { nftProducts } from "@/lib/product";
-import React from "react";
+import React, { Suspense } from "react";
 
 export default async function Home() {
   return (
@@ -13,30 +13,13 @@ export default async function Home() {
           Trending Collections
         </h2>
         <div className="flex gap-6 overflow-x-auto py-4 [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {nftProducts.map(({ name, img, creator }, i) => (
-            <NftCard
-              key={`${name}-1-${i}`}
-              name={name}
-              img={img}
-              creator={creator}
-            />
-          ))}
-          {nftProducts.map(({ name, img, creator }, i) => (
-            <NftCard
-              key={`${name}-2-${i}`}
-              name={name}
-              img={img}
-              creator={creator}
-            />
-          ))}
-          {nftProducts.map(({ name, img, creator }, i) => (
-            <NftCard
-              key={`${name}-3-${i}`}
-              name={name}
-              img={img}
-              creator={creator}
-            />
-          ))}
+          <Suspense
+            fallback={Array.from({ length: 5 }).map((_, index) => (
+              <NftCardSkeleton key={index} />
+            ))}
+          >
+            <Trending />
+          </Suspense>
         </div>
       </section>
       <section>

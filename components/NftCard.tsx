@@ -12,7 +12,14 @@ const NftCard: React.FC<NftCardProps> = ({ name, img, creator }) => {
   return (
     <article className="bg-dark-surface-200 flex h-full min-w-60 flex-col gap-4 overflow-hidden rounded-2xl">
       <div>
-        <Image src={img} alt={name} width={512} height={512} loading="eager" />
+        <Image
+          src={img}
+          alt={name}
+          width={512}
+          height={512}
+          loading="eager"
+          className="aspect-square object-cover"
+        />
       </div>
       <div className="flex flex-col justify-between gap-4 p-4 pt-0">
         <div>

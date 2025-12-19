@@ -1,14 +1,24 @@
-import NextAuth from "next-auth";
+import NextAuth, { type DefaultSession } from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { compare, hash } from "bcrypt";
 import db from "@/db";
 import { users, UsersSchema } from "@/db/schema/users";
-import { sessions } from "@/db/schema/sessions";
 import { accounts } from "@/db/schema/accounts";
 import { verificationToken } from "@/db/schema/verificationToken";
 import { getUserByEmail } from "./dal";
+import { sessions } from "@/db/schema/sessions";
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      name: string;
+      id: string;
+      email: string;
+    } & DefaultSession["user"];
+  }
+}
 
 //
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -51,6 +61,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   pages: {
     signIn: "/sign-in",
+  },
+  callbacks: {
+    jwt: ({ token, user }) => {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    session: ({ token, session }) => {
+      session.user.id = token.id as string;
+      return session;
+    },
   },
 });
 

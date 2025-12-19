@@ -4,7 +4,6 @@ import db from "@/db";
 import { nfts, NftSchema } from "@/db/schema/nfts";
 import { auth } from "@/lib/auth";
 import { upload } from "@/lib/cloudinary";
-import { getUserByEmail } from "@/lib/dal";
 import { UploadApiResponse } from "cloudinary";
 import * as z from "zod";
 
@@ -72,12 +71,9 @@ export async function createNft(formData: FormData): Promise<ActionResponse> {
     // Get user info from session
     const session = await auth();
     // Return error message if user is not authenticated
-    if (!session) {
+    if (!session || !session.user) {
       return { success: false, message: "User is not authenticated." };
     }
-
-    // Get users from db since we dont have userId included in the session data
-    const user = await getUserByEmail(session.user?.email as string);
 
     // Prepare the data for insertion into db
     const data: NftSchema = {
@@ -85,9 +81,9 @@ export async function createNft(formData: FormData): Promise<ActionResponse> {
       price: validationResult.data.price,
       description: validationResult.data.description,
       category: validationResult.data.category,
-      creator: session.user?.name as string,
+      creator: session.user.name,
       url: result.url,
-      userId: user!.id,
+      userId: session.user.id,
     };
 
     // Insert data into db
