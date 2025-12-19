@@ -15,7 +15,7 @@ const MobileNavigation = () => {
     <>
       <nav
         aria-label="mobile menu"
-        className={`bg-background-dark fixed top-0 right-0 bottom-0 left-0 flex h-dvh w-full ${isNavOpen ? "translate-x-0" : "-translate-x-full"} flex-col items-center gap-10 px-4 py-6 transition-transform sm:px-10 lg:hidden`}
+        className={`bg-background-dark fixed top-0 right-0 bottom-0 left-0 z-50 flex h-dvh w-full ${isNavOpen ? "translate-x-0" : "-translate-x-full"} flex-col items-center gap-10 px-4 py-6 transition-transform sm:px-10 lg:hidden`}
       >
         <div className="flex w-full items-center justify-between">
           <Button
@@ -108,13 +108,13 @@ const MobileNavigation = () => {
             <>
               <Link
                 href={"/sign-in"}
-                className="hover:bg-dark-surface/90 bg-dark-surface-200 h-10 max-w-[480px] min-w-[84px] rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
+                className="hover:bg-dark-surface/90 bg-dark-surface-200 flex h-10 max-w-[480px] min-w-[84px] items-center justify-center rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
               >
                 Sign In
               </Link>
               <Link
                 href={"/sign-up"}
-                className="hover:bg-pry/90 bg-pry h-10 max-w-[480px] min-w-[84px] rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
+                className="hover:bg-pry/90 bg-pry flex h-10 max-w-[480px] min-w-[84px] items-center justify-center rounded-full px-4 text-sm leading-normal font-bold tracking-[0.015rem] text-white transition-colors"
               >
                 Sign Up
               </Link>
