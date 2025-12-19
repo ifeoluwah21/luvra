@@ -71,9 +71,11 @@ const SignUpForm: React.FC = () => {
       <Button
         disabled={isPending}
         type="submit"
-        className="bg-pry disabled:bg-pry/50 hover:bg-pry/90 mt-4 h-14 w-full cursor-pointer rounded-2xl text-base leading-normal font-bold tracking-[-0.015rem] transition-colors"
+        className="bg-pry disabled:bg-pry/50 hover:bg-pry/90 mt-4 flex h-14 w-full cursor-pointer items-center gap-3 rounded-2xl text-base leading-normal font-bold tracking-[-0.015rem] transition-colors"
       >
-        <ClipLoader size={24} loading={isPending} color="#ffffff" />
+        {isPending && (
+          <ClipLoader size={24} loading={isPending} color="#ffffff" />
+        )}
         <span>Sign Up</span>
       </Button>
       <div className="flex w-full items-center gap-4 py-2">

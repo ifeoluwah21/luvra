@@ -149,7 +149,7 @@ export async function signInWithCredential(
     password: formData.get("password") as string,
   });
 
-  //  Return early if validation fails
+  // Return early if validation fails
   if (!validationResult.success) {
     return {
       success: false,
