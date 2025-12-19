@@ -136,6 +136,8 @@
   }
 }
 
-.modal-open {
-  overflow-y: hidden;
+@media (width <= 1024px) {
+  .modal-open {
+    overflow-y: hidden;
+  }
 }
