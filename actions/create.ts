@@ -5,6 +5,7 @@ import { nfts, NftSchema } from "@/db/schema/nfts";
 import { auth } from "@/lib/auth";
 import { upload } from "@/lib/cloudinary";
 import { UploadApiResponse } from "cloudinary";
+import { revalidateTag } from "next/cache";
 import * as z from "zod";
 
 export type ActionResponse = {
@@ -90,7 +91,7 @@ export async function createNft(formData: FormData): Promise<ActionResponse> {
     await db.insert(nfts).values(data);
     console.log("✅Successfull added to DB");
     // Redirect or do something
-
+    revalidateTag("nfts", "days");
     return {
       success: true,
       message: "NFT successfully minted",

@@ -5,7 +5,7 @@ import {
   text,
   timestamp,
 } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import * as z from "zod";
 import { users } from "./users";
 
@@ -34,4 +34,6 @@ export const nfts = pgTable("nfts", {
 });
 
 export const nftSchema = createInsertSchema(nfts);
+export const nftSelectSchema = createSelectSchema(nfts);
 export type NftSchema = z.infer<typeof nftSchema>;
+export type NftSelectSchema = z.infer<typeof nftSelectSchema>;

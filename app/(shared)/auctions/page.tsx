@@ -1,105 +1,13 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { nftProducts } from "@/lib/product";
-import { useState, type FC } from "react";
-import ProductCard from "./_components/ProductCard";
+import { type FC } from "react";
+import AuctionsForm from "./_components/AuctionsForm";
+import db from "@/db";
+import { nfts } from "@/db/schema/nfts";
 
-const AuctionsPage: FC = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [categoryQuery, setCategoryQuery] = useState("all");
-  const [nfts, setNfts] = useState(nftProducts);
+const AuctionsPage: FC = async () => {
+  const nftProducts = await db.select().from(nfts);
   return (
     <div className="flex flex-col gap-8 px-4 md:flex-row">
-      <aside className="w-full md:w-64 lg:w-72">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setNfts(() => {
-              if (searchQuery.trim() === "" && categoryQuery === "all")
-                return nftProducts;
-              return nftProducts
-                .filter(
-                  ({ name, creator }) =>
-                    //filter the nftProducts array based on the name or creator
-                    name
-                      .toLowerCase()
-                      .includes(searchQuery.trim().toLowerCase()) ||
-                    creator
-                      .toLowerCase()
-                      .includes(searchQuery.trim().toLowerCase()),
-                )
-                .filter(
-                  ({ category }) =>
-                    //filter the nftProducts array based on the category
-                    categoryQuery === "all" || category === categoryQuery,
-                );
-            });
-          }}
-          className="sticky top-28 flex flex-col gap-6"
-        >
-          <div className="flex flex-col">
-            <label htmlFor="search" className="sr-only">
-              Search
-            </label>
-            <input
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.currentTarget.value);
-              }}
-              type="text"
-              name="search"
-              placeholder="Search items..."
-              id="search"
-              className="border-custom-border bg-dark-surface-200 focus:border-pry focus:ring-pry placeholder:text-custom-text/60 h-12 w-full rounded-full border px-5 py-2 text-base font-normal text-white focus:ring-2 focus:outline-0"
-            />
-          </div>
-          <div className="flex flex-col gap-4">
-            <h2 className="text-lg font-bold text-white">Filter</h2>
-            <div className="flex w-full flex-col gap-2">
-              <label
-                htmlFor="category"
-                className="text-custom-text text-sm font-medium"
-              >
-                Category
-              </label>
-              <select
-                name="category"
-                id="category"
-                className="border-custom-border bg-dark-surface-200 focus:border-pry focus:ring-pry h-12 rounded-2xl border px-4 py-2 text-base font-normal text-white focus:ring-2 focus:outline-0"
-                onChange={(e) => {
-                  setCategoryQuery(e.currentTarget.value);
-                }}
-              >
-                <option value="all">All</option>
-                <option value="art">Art</option>
-                <option value="gaming">Gaming</option>
-                <option value="music">Music</option>
-                <option value="membership">Membership</option>
-                <option value="photography">Photography</option>
-              </select>
-            </div>
-          </div>
-          <Button
-            className="bg-pry shadow-accent hover:bg-pry/90 h-12 w-full rounded-full px-5 text-base leading-normal font-bold tracking-[0.03rem] text-white transition-colors"
-            type="submit"
-          >
-            <span>Apply Filters</span>
-          </Button>
-        </form>
-      </aside>
-      <section className="@container flex-1">
-        <div className="grid grid-cols-1 gap-8 @[480px]:grid-cols-2 @[768px]:grid-cols-3">
-          {nfts.map(({ img, name, creator, price }, i) => (
-            <ProductCard
-              key={`${name}-${i}`}
-              productImg={img}
-              productName={name}
-              productCreator={creator}
-              productPrice={price}
-            />
-          ))}
-        </div>
-      </section>
+      <AuctionsForm nftProducts={nftProducts} />
     </div>
   );
 };

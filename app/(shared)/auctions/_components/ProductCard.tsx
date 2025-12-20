@@ -18,7 +18,13 @@ const ProductCard: FC<ProductCardProps> = ({
   return (
     <article className="bg-dark-surface-200 flex flex-col gap-4 overflow-hidden rounded-2xl">
       <div className="relative w-full overflow-hidden">
-        <Image src={productImg} alt={productName} width={512} height={512} />
+        <Image
+          src={productImg}
+          alt={productName}
+          width={512}
+          height={512}
+          className="aspect-square object-cover"
+        />
       </div>
       <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
         <div className="flex flex-col">

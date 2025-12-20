@@ -54,6 +54,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       type: "credentials",
     }),
   ],
+  trustHost: true,
   session: {
     strategy: "jwt",
     //1 day

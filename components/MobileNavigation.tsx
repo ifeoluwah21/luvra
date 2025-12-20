@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -43,64 +43,74 @@ const MobileNavigation = () => {
         </div>
         <ul className="flex w-full flex-col items-center gap-6">
           <li>
-            <NavLink
-              onClick={() => {
-                setIsNavOpen(false);
-                document.body.classList.remove("modal-open");
-              }}
-              href={"/"}
-              className={`px-4 py-2 text-xl leading-normal font-semibold transition-colors hover:text-white`}
-            >
-              Discover
-            </NavLink>
+            <Suspense>
+              <NavLink
+                onClick={() => {
+                  setIsNavOpen(false);
+                  document.body.classList.remove("modal-open");
+                }}
+                href={"/"}
+                className={`px-4 py-2 text-xl leading-normal font-semibold transition-colors hover:text-white`}
+              >
+                Discover
+              </NavLink>
+            </Suspense>
           </li>
           <li>
-            <NavLink
-              onClick={() => {
-                setIsNavOpen(false);
-                document.body.classList.remove("modal-open");
-              }}
-              href={"/auctions"}
-              className={`px-4 py-2 text-xl leading-normal font-semibold transition-colors hover:text-white`}
-            >
-              Auctions
-            </NavLink>
+            <Suspense>
+              <NavLink
+                onClick={() => {
+                  setIsNavOpen(false);
+                  document.body.classList.remove("modal-open");
+                }}
+                href={"/auctions"}
+                className={`px-4 py-2 text-xl leading-normal font-semibold transition-colors hover:text-white`}
+              >
+                Auctions
+              </NavLink>
+            </Suspense>
           </li>
           <li>
-            <NavLink
-              onClick={() => {
-                setIsNavOpen(false);
-                document.body.classList.remove("modal-open");
-              }}
-              href={"/drops"}
-              className={`px-4 py-2 text-xl leading-normal font-semibold transition-colors hover:text-white`}
-            >
-              Drops
-            </NavLink>
+            <Suspense>
+              <NavLink
+                onClick={() => {
+                  setIsNavOpen(false);
+                  document.body.classList.remove("modal-open");
+                }}
+                href={"/drops"}
+                className={`px-4 py-2 text-xl leading-normal font-semibold transition-colors hover:text-white`}
+              >
+                Drops
+              </NavLink>
+            </Suspense>
           </li>
           <li>
-            <NavLink
-              onClick={() => {
-                setIsNavOpen(false);
-                document.body.classList.remove("modal-open");
-              }}
-              href={"#"}
-              className={`px-4 py-2 text-xl leading-normal font-semibold transition-colors hover:text-white`}
-            >
-              Profile
-            </NavLink>
+            <Suspense>
+              <NavLink
+                onClick={() => {
+                  setIsNavOpen(false);
+                  document.body.classList.remove("modal-open");
+                }}
+                href={"#"}
+                className={`px-4 py-2 text-xl leading-normal font-semibold transition-colors hover:text-white`}
+              >
+                Profile
+              </NavLink>
+            </Suspense>
           </li>
           <li>
-            <NavLink
-              onClick={() => {
-                setIsNavOpen(false);
-                document.body.classList.remove("modal-open");
-              }}
-              href={"/create"}
-              className={`px-4 py-2 text-xl leading-normal font-semibold transition-colors hover:text-white`}
-            >
-              Create
-            </NavLink>
+            <Suspense>
+              <NavLink
+                onClick={() => {
+                  setIsNavOpen(false);
+                  document.body.classList.remove("modal-open");
+                }}
+                href={"/create"}
+                className={`px-4 py-2 text-xl leading-normal font-semibold transition-colors hover:text-white`}
+              >
+                Create
+              </NavLink>
+            </Suspense>
           </li>
         </ul>
         <div className="my-auto flex w-full items-center justify-center gap-12">

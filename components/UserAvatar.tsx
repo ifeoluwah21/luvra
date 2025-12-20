@@ -1,13 +1,14 @@
-import { auth } from "@/lib/auth";
+"use client";
 import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import { signout } from "@/actions/auth";
+import { useSession } from "next-auth/react";
 
-const UserAvatar = async () => {
-  const session = await auth();
-  if (!session) {
+const UserAvatar = () => {
+  const { status, data } = useSession();
+  if (status !== "authenticated") {
     return (
       <>
         <Link
@@ -35,10 +36,10 @@ const UserAvatar = async () => {
           Log out
         </Button>
       </form>
-      <div className="relative h-12 w-12 overflow-clip rounded-full bg-white">
+      <div className="relative aspect-square h-10 w-10 overflow-clip rounded-full bg-white">
         <Image
-          alt={session.user.name || ""}
-          src={session.user.image || "/placeholder.png"}
+          alt={data.user.name || ""}
+          src={data.user.image || "/placeholder.png"}
           width={96}
           height={96}
         />
