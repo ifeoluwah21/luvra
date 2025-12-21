@@ -2,7 +2,18 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-
+@theme {
+  --breakpoint-2xl: 90rem;
+  --breakpoint-3xl: 120rem;
+  --color-dark-surface: rgb(26, 26, 26);
+  --color-dark-surface-200: #333333;
+  --color-border-light: rgb(160, 160, 160);
+  --color-pry: #007aff;
+  --color-background-light: #f6f6f8;
+  --color-background-dark: #262626;
+  --color-custom-text: #a0a0a0;
+  --color-custom-border: #a0a0a0;
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -118,5 +129,15 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@media (width <= 1024px) {
+  .modal-open {
+    overflow-y: hidden;
   }
 }

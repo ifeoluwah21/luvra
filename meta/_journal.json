@@ -1,0 +1,83 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1764773523931,
+      "tag": "0000_sudden_valeria_richards",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1764773799023,
+      "tag": "0001_common_greymalkin",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1765817208785,
+      "tag": "0002_nice_ultragirl",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1765822014414,
+      "tag": "0003_free_leper_queen",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1765822198770,
+      "tag": "0004_polite_skreet",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1765822260749,
+      "tag": "0005_pink_martin_li",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1765822289110,
+      "tag": "0006_opposite_phil_sheldon",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1765907670943,
+      "tag": "0007_fresh_juggernaut",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1765907754752,
+      "tag": "0008_glamorous_bastion",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1765908044843,
+      "tag": "0009_far_smiling_tiger",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1765909084260,
+      "tag": "0010_cute_misty_knight",
+      "breakpoints": true
+    }
+  ]
+}

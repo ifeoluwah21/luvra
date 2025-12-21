@@ -1,95 +1,67 @@
-"use client";
-import { Search, ShoppingCart, Bell, Menu, X } from "lucide-react";
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import React, { Suspense } from "react";
+import { SessionProvider } from "next-auth/react";
+import MobileNavigation from "./MobileNavigation";
+import UserAvatar from "./UserAvatar";
+import NavLink from "./NavLink";
 
-export default function Nav() {
-  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
-  const pathname = usePathname();
-
-  const links = [
-    { name: "Home", path: "/" },
-    { name: "Marketplace", path: "/marketplace" },
-    { name: "Auctions", path: "/auctions" },
-    { name: "Drop", path: "/drop" },
-  ];
-
+const Nav: React.FC = () => {
   return (
     <>
-      {/* Desktop Nav */}
-      <div className="hidden items-center justify-between sm:flex">
-        <h2>LUVRA</h2>
-
-        <div className="flex gap-10">
-          {links.map((link) => (
-            <Link
-              key={link.name}
-              href={link.path}
-              className={
-                pathname === link.path
-                  ? "border-b-3 border-black"
-                  : "border-b-3 border-transparent hover:border-gray-400"
-              }
-            >
-              <p>{link.name}</p>
-            </Link>
-          ))}
+      {/* Nav bar for Desktop screens */}
+      <nav className="hidden w-full items-center justify-center gap-4 lg:flex">
+        <ul className="bg-dark-surface-200 border-custom-border/20 flex items-center gap-8 rounded-full border px-8 py-2 text-sm backdrop-blur-sm">
+          <li>
+            <Suspense>
+              <NavLink
+                className="px-1 py-1.5 leading-normal font-semibold transition-colors hover:text-white"
+                href={"/"}
+              >
+                Discover
+              </NavLink>
+            </Suspense>
+          </li>
+          <li>
+            <Suspense>
+              <NavLink
+                className="px-1 py-1.5 leading-normal font-semibold transition-colors hover:text-white"
+                href={"/auctions"}
+              >
+                Auctions
+              </NavLink>
+            </Suspense>
+          </li>
+          <li>
+            <Suspense>
+              <NavLink
+                className="px-1 py-1.5 leading-normal font-semibold transition-colors hover:text-white"
+                href={"/profile"}
+              >
+                Profile
+              </NavLink>
+            </Suspense>
+          </li>
+          <li>
+            <Suspense>
+              <NavLink
+                className="px-1 py-1.5 leading-normal font-semibold transition-colors hover:text-white"
+                href={"/create"}
+              >
+                Create
+              </NavLink>
+            </Suspense>
+          </li>
+        </ul>
+      </nav>
+      {/* Navigation for Mobile screen */}
+      <SessionProvider>
+        <MobileNavigation />
+        {/* Desktop screen*/}
+        <div className="hidden items-center gap-3 lg:flex">
+          <UserAvatar />
         </div>
-
-        <div className="flex gap-6">
-          <Search className="h-5 w-5" />
-          <ShoppingCart className="h-5 w-5" />
-          <Bell className="h-5 w-5" />
-        </div>
-      </div>
-      {/* Mobile Nav */}
-      <>
-        <div className="flex items-center justify-between sm:hidden">
-          <Menu
-            className="cursor-pointer"
-            onClick={() => setIsSideBarOpen(true)}
-          />
-          <h2>LUVRA</h2>
-          <div className="flex gap-6">
-            <Search className="h-5 w-5" />
-            <ShoppingCart className="h-5 w-5" />
-          </div>
-        </div>
-        {/* Side bar */}
-        <AnimatePresence>
-          {isSideBarOpen && (
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="bg-background fixed top-0 left-0 z-50 block h-full w-full p-10 sm:hidden"
-            >
-              <div className="itens-center flex justify-between">
-                <h2>LUVRA</h2>
-                <X
-                  className="cursor-pointer"
-                  onClick={() => setIsSideBarOpen(false)}
-                />
-              </div>
-
-              <div className="mt-8 flex flex-col gap-12">
-                {links.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.path}
-                    onClick={() => setIsSideBarOpen(false)}
-                  >
-                    <p>{link.name}</p>
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </>
+      </SessionProvider>
     </>
   );
-}
+};
+
+export default Nav;
