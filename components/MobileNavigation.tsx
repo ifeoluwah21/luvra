@@ -77,21 +77,7 @@ const MobileNavigation = () => {
                   setIsNavOpen(false);
                   document.body.classList.remove("modal-open");
                 }}
-                href={"/drops"}
-                className={`px-4 py-2 text-xl leading-normal font-semibold transition-colors hover:text-white`}
-              >
-                Drops
-              </NavLink>
-            </Suspense>
-          </li>
-          <li>
-            <Suspense>
-              <NavLink
-                onClick={() => {
-                  setIsNavOpen(false);
-                  document.body.classList.remove("modal-open");
-                }}
-                href={"#"}
+                href={"/profile"}
                 className={`px-4 py-2 text-xl leading-normal font-semibold transition-colors hover:text-white`}
               >
                 Profile

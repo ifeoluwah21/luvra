@@ -34,17 +34,7 @@ const Nav: React.FC = () => {
             <Suspense>
               <NavLink
                 className="px-1 py-1.5 leading-normal font-semibold transition-colors hover:text-white"
-                href={"/drops"}
-              >
-                Drops
-              </NavLink>
-            </Suspense>
-          </li>
-          <li>
-            <Suspense>
-              <NavLink
-                className="px-1 py-1.5 leading-normal font-semibold transition-colors hover:text-white"
-                href={"#"}
+                href={"/profile"}
               >
                 Profile
               </NavLink>
